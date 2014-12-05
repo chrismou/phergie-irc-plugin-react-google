@@ -1,6 +1,6 @@
 <?php
 /**
- * Web search result count provider for the Google plugin for Phergie (https://github.com/chrismou/phergie-irc-plugin-react-google)
+ * Web search result count provider for the Google plugin for Phergie (https://github.com/phergie/phergie-irc-bot-react)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
