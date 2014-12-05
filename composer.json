@@ -27,8 +27,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Chrismou\\Phergie\\Plugin\\Google\\": "src"
-        }
+			"Chrismou\\Phergie\\Plugin\\Google\\": "src"
+		}
     },
     "autoload-dev": {
         "psr-4": {
