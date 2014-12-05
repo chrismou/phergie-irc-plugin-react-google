@@ -5,7 +5,7 @@
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
  * @license http://phergie.org/license New BSD License
- * @package Phergie\Irc\Plugin\React\Google
+ * @package Chrismou\Phergie\Plugin\Google
  */
 
 namespace Chrismou\Phergie\Plugin\Google;
@@ -14,20 +14,20 @@ use Phergie\Irc\Bot\React\AbstractPlugin;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use WyriHaximus\Phergie\Plugin\Http\Request as HttpRequest;
-use Chrismou\Phergie\Plugin\Google\Providers\GoogleProviderInterface;
+use Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface;
 
 /**
  * Plugin class.
  *
  * @category Phergie
- * @package Phergie\Irc\Plugin\React\Google
+ * @package Chrismou\Phergie\Plugin\Google
  */
 class Plugin extends AbstractPlugin
 {
 
 	protected $providers = array(
-		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Providers\\GoogleSearch",
-		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Providers\\GoogleSearchCount"
+		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
 	);
 
     /**
@@ -78,7 +78,7 @@ class Plugin extends AbstractPlugin
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param \Chrismou\Phergie\Plugin\Google\Providers\GoogleProviderInterface
+	 * @param \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface
 	 */
 	public function handleCommandHelp(Event $event, Queue $queue)
 	{
@@ -90,8 +90,7 @@ class Plugin extends AbstractPlugin
 	 *
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 *
-	 * @return \Chrismou\Phergie\Plugin\Google\Providers\GoogleProviderInterface $provider|false
+	 * @return \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider|false
 	 */
 	protected function getPlugin(Event $event)
 	{
@@ -120,8 +119,7 @@ class Plugin extends AbstractPlugin
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param \Chrismou\Phergie\Plugin\Google\Providers\GoogleProviderInterface $provider
-	 *
+	 * @param \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider
 	 * @return \WyriHaximus\Phergie\Plugin\Http\Request
 	 */
 	protected function getApiRequest(Event $event, Queue $queue, GoogleProviderInterface $provider)

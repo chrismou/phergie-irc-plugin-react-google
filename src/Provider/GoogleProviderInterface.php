@@ -1,6 +1,6 @@
 <?php
 
-namespace Chrismou\Phergie\Plugin\Google\Providers;
+namespace Chrismou\Phergie\Plugin\Google\Provider;
 
 use Phergie\Irc\Plugin\React\Command\CommandEvent;
 use Phergie\Irc\Bot\React\EventQueueInterface;

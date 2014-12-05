@@ -1,15 +1,36 @@
 <?php
+/**
+ * Web search provider for the Google plugin for Phergie (https://github.com/chrismou/phergie-irc-plugin-react-google)
+ *
+ * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
+ * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
+ * @license http://phergie.org/license New BSD License
+ * @package Chrismou\Phergie\Plugin\Google
+ */
 
-namespace Chrismou\Phergie\Plugin\Google\Providers;
+namespace Chrismou\Phergie\Plugin\Google\Provider;
 
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
+/**
+ * Provider class
+ *
+ * @category Phergie
+ * @package Chrismou\Phergie\Plugin\Google\Provider
+ */
 class GoogleSearch implements GoogleProviderInterface
 {
 
 	protected $apiUrl = 'http://ajax.googleapis.com/ajax/services/search/web';
 
+	/**
+	 *
+	 *
+	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
+	 * @return string
+	 */
 	public function getApiRequestUrl(Event $event, Queue $queue)
 	{
 		$params = $event->getCustomParams();
@@ -26,6 +47,13 @@ class GoogleSearch implements GoogleProviderInterface
 		return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
 	}
 
+	/**
+	 *
+	 *
+	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
+	 * @param string $response
+	 */
 	public function processSuccessResponse(Event &$event, Queue &$queue, $response)
 	{
 		$json = json_decode($response);
@@ -45,6 +73,13 @@ class GoogleSearch implements GoogleProviderInterface
 		}
 	}
 
+	/**
+	 *
+	 *
+	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
+	 * @param string $error
+	 */
 	public function processFailedResponse(Event &$event, Queue &$queue, $error)
 	{
 		$queue->ircPrivmsg($event->getSource(), "something went wrong... ಠ_ಠ");

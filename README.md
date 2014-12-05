@@ -22,7 +22,7 @@ See Phergie documentation for more information on
 ## Configuration
 
 ```php
-new \Phergie\Irc\Plugin\React\Google\Plugin(array(
+new Chrismou\Phergie\Plugin\Google\Plugin(array(
 
 
 
