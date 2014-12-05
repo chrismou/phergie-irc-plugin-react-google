@@ -27,7 +27,9 @@ class Plugin extends AbstractPlugin
 
 	protected $providers = array(
 		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+		"g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
+		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
 	);
 
     /**
