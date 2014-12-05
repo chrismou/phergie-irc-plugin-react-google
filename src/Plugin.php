@@ -71,7 +71,8 @@ class Plugin extends AbstractPlugin
 	public function handleCommand(Event $event, Queue $queue)
 	{
 		$provider = $this->getPlugin($event);
-		$request = $this->getApiRequest($event, $queue, $provider);
+
+		$request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
 		$this->getEventEmitter()->emit('http.request', array($request));
 	}
 

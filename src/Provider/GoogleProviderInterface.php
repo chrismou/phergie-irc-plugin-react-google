@@ -15,6 +15,8 @@ use Phergie\Irc\Bot\React\EventQueueInterface;
 
 interface GoogleProviderInterface {
 
+	function validateParams(array $params);
+
 	function getApiRequestUrl(CommandEvent $event, EventQueueInterface $queue);
 
 	function processSuccessResponse(CommandEvent &$event, EventQueueInterface &$queue, $response);

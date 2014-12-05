@@ -21,9 +21,8 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
  */
 class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 {
-
 	/**
-	 *
+	 * Process the response (when the request is successful)
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -43,7 +42,7 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 	}
 
 	/**
-	 *
+	 * Returns an array of lines for the help response
 	 *
 	 * @return array
 	 */

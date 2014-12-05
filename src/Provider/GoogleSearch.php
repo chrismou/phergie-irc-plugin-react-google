@@ -25,7 +25,18 @@ class GoogleSearch implements GoogleProviderInterface
 	protected $apiUrl = 'http://ajax.googleapis.com/ajax/services/search/web';
 
 	/**
+	 * Validate the provided parameters
 	 *
+	 * @param array $params
+	 * @return true|false
+	 */
+	public function validateParams(array $params)
+	{
+		return (count($params)) ? true : false;
+	}
+
+	/**
+	 * Get the url for the API request
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -34,9 +45,6 @@ class GoogleSearch implements GoogleProviderInterface
 	public function getApiRequestUrl(Event $event, Queue $queue)
 	{
 		$params = $event->getCustomParams();
-		//if (!count($params)) return $this->handleGoogleHelp($event, $queue);
-		if (!count($params)) return "";
-
 		$query = trim(implode(" ", $params));
 
 		$querystringParams = array(
@@ -48,7 +56,7 @@ class GoogleSearch implements GoogleProviderInterface
 	}
 
 	/**
-	 *
+	 * Process the response (when the request is successful)
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -74,7 +82,7 @@ class GoogleSearch implements GoogleProviderInterface
 	}
 
 	/**
-	 *
+	 * Process the response (when the request fails)
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -86,7 +94,7 @@ class GoogleSearch implements GoogleProviderInterface
 	}
 
 	/**
-	 *
+	 * Returns an array of lines for the help response
 	 *
 	 * @return array
 	 */

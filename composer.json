@@ -13,7 +13,7 @@
     "require": {
         "phergie/phergie-irc-bot-react": "dev-master",
         "phergie/phergie-irc-plugin-react-command": "dev-master",
-		"wyrihaximus/phergie-http": "dev-master"
+		"wyrihaximus/phergie-http": "~1.0|~2.0"
 
     },
     "require-dev": {
