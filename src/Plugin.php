@@ -29,7 +29,7 @@ class Plugin extends AbstractPlugin
 		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
 		"g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
 		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
-		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCoun"
+		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
 	);
 
     /**

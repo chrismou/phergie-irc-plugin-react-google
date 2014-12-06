@@ -26,6 +26,10 @@ Add the following line to your config file:
 new Chrismou\Phergie\Plugin\Google\Plugin()
 ```
 
+## Usage
+
+By default, the plugin will respond to both google and g for Google searches, and googlecount and gc for estimated result counts
+
 ## Tests
 
 To run the unit test suite:
