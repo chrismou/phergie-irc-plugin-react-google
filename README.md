@@ -1,6 +1,6 @@
 # phergie/phergie-irc-plugin-react-google
 
-[Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for Perform various Google searches/lookups from within IRC.
+[Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for performing Google searches.
 
 [![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google.svg)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
 ## Install
@@ -20,12 +20,10 @@ See Phergie documentation for more information on
 
 ## Configuration
 
+Add the following line to your config file:
+
 ```php
-new Chrismou\Phergie\Plugin\Google\Plugin(array(
-
-
-
-))
+new Chrismou\Phergie\Plugin\Google\Plugin()
 ```
 
 ## Tests

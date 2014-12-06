@@ -1,6 +1,6 @@
 <?php
 /**
- * Phergie plugin for Perform various Google searches/lookups from within IRC (https://github.com/chrismou/phergie-irc-plugin-react-google)
+ * Phergie plugin for performing Google searches (https://github.com/chrismou/phergie-irc-plugin-react-google)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
@@ -72,8 +72,10 @@ class Plugin extends AbstractPlugin
 	{
 		$provider = $this->getPlugin($event);
 
-		$request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
-		$this->getEventEmitter()->emit('http.request', array($request));
+        if ($provider) {
+		    $request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
+		    $this->getEventEmitter()->emit('http.request', array($request));
+        }
 	}
 
 	/**
