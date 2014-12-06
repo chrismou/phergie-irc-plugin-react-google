@@ -29,7 +29,7 @@ class Plugin extends AbstractPlugin
 		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
 		"g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
 		"googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
-		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCoun"
 	);
 
     /**
@@ -100,7 +100,7 @@ class Plugin extends AbstractPlugin
 	protected function getPlugin(Event $event)
 	{
 		$command = $event->getCustomCommand();
-		return (isset($this->providers[$command])) ? new $this->providers[$command] : false;
+		return (isset($this->providers[$command]) && class_exists($this->providers[$command])) ? new $this->providers[$command] : false;
 	}
 
 	/**
