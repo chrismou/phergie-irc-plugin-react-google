@@ -76,7 +76,7 @@ class GoogleSearch implements GoogleProviderInterface
 			$queue->ircPrivmsg($event->getSource(), sprintf("More results: %s", $json->cursor->moreResultsUrl));
 
 		} else {
-			$msg = 'No results for this query.' . $json->cursor->estimatedResultCount;
+			$msg = 'No results for this query';
 			$queue->ircPrivmsg($event->getSource(), $msg);
 		}
 	}

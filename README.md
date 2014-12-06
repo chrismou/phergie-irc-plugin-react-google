@@ -23,12 +23,25 @@ See Phergie documentation for more information on
 Add the following line to your config file:
 
 ```php
-new Chrismou\Phergie\Plugin\Google\Plugin()
+new Chrismou\Phergie\Plugin\Google\Plugin
 ```
 
-## Usage
+By default, the plugin will respond to both google and g for Google searches, and googlecount and gc for estimated result 
+counts.
 
-By default, the plugin will respond to both google and g for Google searches, and googlecount and gc for estimated result counts
+Or, you can pass references to the providers you want to use as a config array, where the array key is the command you want 
+the bot to respond to and the value is the class to use.
+
+```php
+new \Chrismou\Phergie\Plugin\Google\Plugin(array(
+    'providers' => array(
+        "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+        "g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
+        "gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+    )
+)),
+```
 
 ## Tests
 

@@ -35,7 +35,7 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 
 		$queue->ircPrivmsg($event->getSource(), sprintf(
 			"%s results [ %s ]",
-			$json->cursor->estimatedResultCount,
+            ($json->cursor->estimatedResultCount) ? $json->cursor->estimatedResultCount : "0",
 			$json->cursor->moreResultsUrl
 		));
 
