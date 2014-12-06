@@ -13,7 +13,7 @@ namespace Chrismou\Phergie\Tests\Plugin\Google;
 use Phake;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
-use Phergie\Irc\Plugin\React\Google\Plugin;
+use Chrismou\Phergie\Plugin\Google\Plugin;
 
 /**
  * Tests for the Plugin class.
@@ -24,7 +24,6 @@ use Phergie\Irc\Plugin\React\Google\Plugin;
 class PluginTest extends \PHPUnit_Framework_TestCase
 {
 
-
     /**
      * Tests that getSubscribedEvents() returns an array.
      */
@@ -33,4 +32,18 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $plugin = new Plugin;
         $this->assertInternalType('array', $plugin->getSubscribedEvents());
     }
+
+	/**
+	 * Tests that the default providers exist
+	 */
+	public function testProviderClassExists() {
+		$plugin = new Plugin;
+		$providers = $plugin->getProviders();
+
+		foreach ($providers as $command => $class) {
+			$providerExists = (class_exists($class)) ? true : false;
+			$this->assertTrue($providerExists, "Class ".$class." does not exist");
+		}
+	}
+
 }

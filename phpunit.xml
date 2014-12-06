@@ -6,9 +6,10 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true"
+         bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="phergie/phergie-irc-plugin-react-google test suite">
+        <testsuite name="chrismou/phergie-irc-plugin-react-google test suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

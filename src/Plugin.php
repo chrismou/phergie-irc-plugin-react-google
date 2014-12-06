@@ -144,4 +144,9 @@ class Plugin extends AbstractPlugin
 		));
 	}
 
+	public function getProviders()
+	{
+		return $this->providers;
+	}
+
 }

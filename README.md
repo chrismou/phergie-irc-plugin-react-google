@@ -2,8 +2,7 @@
 
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for Perform various Google searches/lookups from within IRC.
 
-[![Build Status](https://secure.travis-ci.org/phergie/phergie-irc-plugin-react-google.png?branch=master)](http://travis-ci.org/phergie/phergie-irc-plugin-react-google)
-
+[![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google.svg)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
 ## Install
 
 The recommended method of installation is [through composer](http://getcomposer.org).
@@ -11,7 +10,7 @@ The recommended method of installation is [through composer](http://getcomposer.
 ```JSON
 {
     "require": {
-        "phergie/phergie-irc-plugin-react-google": "dev-master"
+        "chrismou/phergie-irc-plugin-react-google": "dev-master"
     }
 }
 ```

@@ -1,6 +1,6 @@
 {
-    "name": "phergie/phergie-irc-plugin-react-google",
-    "description": "Phergie plugin for Perform various Google searches/lookups from within IRC",
+    "name": "chrismou/phergie-irc-plugin-react-google",
+    "description": "Phergie plugin for performing Google searches",
     "keywords": [ "phergie", "irc", "bot", "plugin" ],
     "license": "BSD-2-Clause",
     "support": {
