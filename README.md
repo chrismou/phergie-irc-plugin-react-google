@@ -33,7 +33,7 @@ Or, you can pass references to the providers you want to use as a config array, 
 the bot to respond to and the value is the class to use.
 
 ```php
-new \Chrismou\Phergie\Plugin\Google\Plugin(array(
+new Chrismou\Phergie\Plugin\Google\Plugin(array(
     'providers' => array(
         "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
         "g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "79a5147755ff3fc79b46aabad1d399eb",
+    "hash": "96ba3455810da3f31ec98244ea421087",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1065,46 +1065,6 @@
             "time": "2014-11-19 02:28:04"
         },
         {
-            "name": "phergie/phergie-irc-plugin-react-pong",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-pong.git",
-                "reference": "364a50da113e42c90f610a08aba0ffff19576797"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-pong/zipball/364a50da113e42c90f610a08aba0ffff19576797",
-                "reference": "364a50da113e42c90f610a08aba0ffff19576797",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "dev-master"
-            },
-            "require-dev": {
-                "phake/phake": "2.0.0-beta2",
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\Pong\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for responding to server ping events",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2014-11-19 02:29:53"
-        },
-        {
             "name": "phpunit/php-code-coverage",
             "version": "2.0.x-dev",
             "source": {
@@ -1755,12 +1715,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "610f01968f2cd731fdf59dfeae904ed930afc35f"
+                "reference": "a0913638efd5237ff700e92b8444b6a71278f1f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/610f01968f2cd731fdf59dfeae904ed930afc35f",
-                "reference": "610f01968f2cd731fdf59dfeae904ed930afc35f",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/a0913638efd5237ff700e92b8444b6a71278f1f6",
+                "reference": "a0913638efd5237ff700e92b8444b6a71278f1f6",
                 "shasum": ""
             },
             "require": {
@@ -1793,17 +1753,18 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-02 20:19:50"
+            "time": "2014-12-08 08:43:57"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "phergie/phergie-irc-bot-react": 20,
-        "phergie/phergie-irc-plugin-react-pong": 20,
         "phergie/phergie-irc-plugin-react-commandhelp": 20
     },
     "prefer-stable": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4.0"
+    },
     "platform-dev": []
 }
