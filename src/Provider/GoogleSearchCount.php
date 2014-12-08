@@ -25,20 +25,24 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 	 * Process the response (when the request is successful)
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param string $response
+	 * @param string $apiResponse
+	 *
+	 * @return array
 	 */
-	public function processSuccessResponse(Event &$event, Queue &$queue, $response)
+	public function getSuccessLines(Event $event, $apiResponse)
 	{
-		$json = json_decode($response);
+		$json = json_decode($apiResponse);
 		$json = $json->responseData;
 
-		$queue->ircPrivmsg($event->getSource(), sprintf(
+		$messages = array();
+
+		$messages[] = sprintf(
 			"%s results [ %s ]",
             ($json->cursor->estimatedResultCount) ? $json->cursor->estimatedResultCount : "0",
 			$json->cursor->moreResultsUrl
-		));
+		);
 
+		return $messages;
 	}
 
 	/**

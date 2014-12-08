@@ -42,7 +42,7 @@ class GoogleSearch implements GoogleProviderInterface
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
 	 * @return string
 	 */
-	public function getApiRequestUrl(Event $event, Queue $queue)
+	public function getApiRequestUrl(Event $event)
 	{
 		$params = $event->getCustomParams();
 		$query = trim(implode(" ", $params));
@@ -56,41 +56,47 @@ class GoogleSearch implements GoogleProviderInterface
 	}
 
 	/**
-	 * Process the response (when the request is successful)
+	 * Process the response (when the request is successful) and return an array of lines to send back to IRC
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param string $response
+	 * @param string $apiResponse
+	 *
+	 * @return array
 	 */
-	public function processSuccessResponse(Event &$event, Queue &$queue, $response)
+	public function getSuccessLines(Event $event, $apiResponse)
 	{
-		$json = json_decode($response);
+		$json = json_decode($apiResponse);
 		$json = $json->responseData;
 
+		$messages = array();
+
 		if ($json->cursor->estimatedResultCount > 0) {
-			$queue->ircPrivmsg($event->getSource(), sprintf(
+			$messages[] = sprintf(
 				"%s [ %s ]",
 				$json->results[0]->titleNoFormatting,
 				$json->results[0]->url
-			));
-			$queue->ircPrivmsg($event->getSource(), sprintf("More results: %s", $json->cursor->moreResultsUrl));
+			);
+			$messages[] = sprintf("More results: %s", $json->cursor->moreResultsUrl);
 
 		} else {
-			$msg = 'No results for this query';
-			$queue->ircPrivmsg($event->getSource(), $msg);
+			$messages[] = 'No results for this query';
 		}
+
+		return $messages;
 	}
 
 	/**
 	 * Process the response (when the request fails)
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param string $error
+	 * @param string  $apiError
+	 *
+	 * @return array
 	 */
-	public function processFailedResponse(Event &$event, Queue &$queue, $error)
+	public function getFailureLines(Event $event, $apiError)
 	{
-		$queue->ircPrivmsg($event->getSource(), "something went wrong... ಠ_ಠ");
+		//$queue->ircPrivmsg($event->getSource(), "something went wrong... ಠ_ಠ");
+		return array("something went wrong... ಠ_ಠ");
 	}
 
 	/**

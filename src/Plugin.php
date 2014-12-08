@@ -70,7 +70,7 @@ class Plugin extends AbstractPlugin
 	 */
 	public function handleCommand(Event $event, Queue $queue)
 	{
-		$provider = $this->getPlugin($event);
+		$provider = $this->getProvider($event);
 
         if ($provider) {
 		    $request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
@@ -87,7 +87,7 @@ class Plugin extends AbstractPlugin
 	 */
 	public function handleCommandHelp(Event $event, Queue $queue)
 	{
-		$provider = $this->getPlugin($event);
+		$provider = $this->getProvider($event);
 		$this->sendHelpReply($event, $queue, $provider->getHelpLines());
 	}
 
@@ -97,7 +97,7 @@ class Plugin extends AbstractPlugin
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @return \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider|false
 	 */
-	protected function getPlugin(Event $event)
+	public function getProvider(Event $event)
 	{
 		$command = $event->getCustomCommand();
 		return (isset($this->providers[$command]) && class_exists($this->providers[$command])) ? new $this->providers[$command] : false;
@@ -112,10 +112,8 @@ class Plugin extends AbstractPlugin
 	 */
 	protected function sendHelpReply(Event $event, Queue $queue, array $messages)
 	{
-		$method = 'irc' . $event->getCommand();
-		$target = $event->getSource();
 		foreach ($messages as $message) {
-			$queue->$method($target, $message);
+			$this->sendIrcResponse($event, $queue, $message);
 		}
 	}
 
@@ -135,15 +133,25 @@ class Plugin extends AbstractPlugin
 			'url' => $provider->getApiRequestUrl($event, $queue),
 			'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
 
-				$provider->processSuccessResponse($event, $queue, $data);
+				//$provider->processSuccessResponse($event, $queue, $data);
+				foreach ((array) $provider->getSuccessLines($event, $data) as $ircResponseLine) {
+					$self->sendIrcResponse($event, $queue, $ircResponseLine);
+				}
 
 			},
 			'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
 
-				$provider->processFailedResponse($event, $queue, $error);
+				//$provider->processFailedResponse($event, $queue, $error);
+				foreach ((array )$provider->getFailureIrcLines($event, $error) as $ircResponseLine) {
+					$self->sendIrcResponse($event, $queue, $ircResponseLine);
+				}
 
 			}
 		));
+	}
+
+	public function sendIrcResponse(Event $event, Queue $queue, $ircResponseLine) {
+		$queue->ircPrivmsg($event->getSource(), $ircResponseLine);
 	}
 
 	public function getProviders()

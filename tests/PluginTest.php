@@ -23,27 +23,189 @@ use Chrismou\Phergie\Plugin\Google\Plugin;
  */
 class PluginTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Mock event emitter
+     *
+     * @var \Evenement\EventEmitterInterface
+     */
+    protected $emitter;
+
+    /**
+     * Mock event
+     *
+     * @var \Phergie\Irc\Event\EventInterface
+     */
+    protected $event;
+
+    /**
+     * Mock event queue
+     *
+     * @var \Phergie\Irc\Bot\React\EventQueueInterface
+     */
+    protected $queue;
+
+    /**
+     * Mock logger
+     *
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+
+
+    protected function setUp()
+    {
+		$this->event = Phake::mock('Phergie\Irc\Plugin\React\Command\CommandEvent');
+		$this->queue = Phake::mock('Phergie\Irc\Bot\React\EventQueueInterface');
+    }
 
     /**
      * Tests that getSubscribedEvents() returns an array.
      */
     public function testGetSubscribedEvents()
     {
-        $plugin = new Plugin;
-        $this->assertInternalType('array', $plugin->getSubscribedEvents());
+        $this->assertInternalType('array', $this->getPlugin()->getSubscribedEvents());
     }
 
 	/**
 	 * Tests that the default providers exist
 	 */
-	public function testProviderClassExists() {
-		$plugin = new Plugin;
-		$providers = $plugin->getProviders();
+	public function testDefaultProviderClassesExist() {
+		$providers = $this->getPlugin()->getProviders();
 
 		foreach ($providers as $command => $class) {
 			$providerExists = (class_exists($class)) ? true : false;
 			$this->assertTrue($providerExists, "Class ".$class." does not exist");
 		}
 	}
+
+	/**
+	 * Tests basic tests for the default "google" command
+	 */
+	public function testSearchCommand() {
+		$httpConfig = $this->doCommandTest("google", array("test", "search"));
+		$this->doResolveTest("google", $httpConfig);
+	}
+
+	/**
+	 * Tests basic tests for the default "googlecount" command
+	 */
+	public function testSearchCountCommand() {
+		$httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
+		$this->doResolveTest("googlecount", $httpConfig);
+	}
+
+	/**
+	 * Tests handCommand() is doing what it's supposed to
+	 *
+	 * @param string $command
+	 * @param array $params
+	 *
+	 * @return array $httpConfig
+	 */
+    protected function doCommandTest($command, $params)
+    {
+		// Test if we've been passed an array of parameters
+		$this->assertInternalType('array', $params);
+
+        $plugin = $this->getPlugin();
+
+        Phake::when($this->event)->getCustomCommand()->thenReturn($command);
+        Phake::when($this->event)->getCustomParams()->thenReturn($params);
+
+        $plugin->handleCommand($this->event, $this->queue);
+        Phake::verify($plugin->getEventEmitter())->emit('http.request', Phake::capture($httpClassConfig));
+
+		// Grab a provider class
+		$provider = $plugin->getProvider($this->event);
+
+		$this->assertInternalType('array', $httpClassConfig);
+		$this->assertCount(1, $httpClassConfig);
+		$request = reset($httpClassConfig);
+		$this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
+		$this->assertSame($provider->getApiRequestUrl($this->event), $request->getUrl());
+
+		$config = $request->getConfig();
+		$this->assertInternalType('array', $config);
+		$this->assertArrayHasKey('resolveCallback', $config);
+		$this->assertInternalType('callable', $config['resolveCallback']);
+		$this->assertArrayHasKey('rejectCallback', $config);
+		$this->assertInternalType('callable', $config['rejectCallback']);
+
+        return $config;
+    }
+
+	/**
+	 * Tests handCommand() is doing what it's supposed to
+	 *
+	 * @param string $command
+	 * @param array $httpConfig
+	 */
+	protected function doResolveTest($command, array $httpConfig)
+	{
+		// Set some test method responses
+		Phake::when($this->event)->getSource()->thenReturn('#channel');
+		Phake::when($this->event)->getCommand()->thenReturn('PRIVMSG');
+		Phake::when($this->event)->getCustomCommand()->thenReturn($command);
+
+		// Grab the plugin,. provider, and a primed HTTP class
+		$plugin = $this->getPlugin();
+		$provider = $plugin->getProvider($this->event);
+
+		// Grab the success callback
+		$resolve = $httpConfig['resolveCallback'];
+
+		// Grab the test "successful response" file and generate what would be the IRC response array
+		$data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
+		$responseLines = $provider->getSuccessLines($this->event, $data);
+
+		// Test we've had an array back and it has at least one response message
+		$this->assertInternalType('array', $responseLines);
+		$this->assertArrayHasKey(0, $responseLines);
+
+		// Run the resolveCallback callback
+		$resolve($data, $this->event, $this->queue);
+
+		// Verify if each expected line was sent
+		foreach ($responseLines as $responseLine) {
+			Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
+		}
+	}
+
+    /**
+     * Returns a configured instance of the class under test.
+     *
+     * @param array $config
+	 *
+     * @return \Chrismou\Phergie\Plugin\Google\Plugin
+     */
+    protected function getPlugin(array $config = array())
+    {
+        $plugin = new Plugin($config);
+        $plugin->setEventEmitter(Phake::mock('\Evenement\EventEmitterInterface'));
+        $plugin->setLogger(Phake::mock('\Psr\Log\LoggerInterface'));
+
+        return $plugin;
+    }
+
+    /**
+     * Returns a mock command event.
+     *
+     * @return \Phergie\Irc\Plugin\React\Command\CommandEvent
+     */
+    protected function getMockCommandEvent()
+    {
+        return Phake::mock('Phergie\Irc\Plugin\React\Command\CommandEvent');
+    }
+
+    /**
+     * Returns a mock event queue.
+     *
+     * @return \Phergie\Irc\Bot\React\EventQueueInterface
+     */
+    protected function getMockEventQueue()
+    {
+        return Phake::mock('Phergie\Irc\Bot\React\EventQueueInterface');
+    }
 
 }

@@ -17,11 +17,11 @@ interface GoogleProviderInterface {
 
 	function validateParams(array $params);
 
-	function getApiRequestUrl(CommandEvent $event, EventQueueInterface $queue);
+	function getApiRequestUrl(CommandEvent $event);
 
-	function processSuccessResponse(CommandEvent &$event, EventQueueInterface &$queue, $response);
+	function getSuccessLines(CommandEvent $event, $apiResponse);
 
-	function processFailedResponse(CommandEvent &$event, EventQueueInterface &$queue, $error);
+	function getFailureLines(CommandEvent $event, $apiError);
 
 	function getHelpLines();
 
