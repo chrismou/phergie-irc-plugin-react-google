@@ -1,6 +1,6 @@
-# phergie/phergie-irc-plugin-react-google
+# chrismou/phergie-irc-plugin-react-google
 
-[Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for performing Google searches.
+[Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
 [![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google.svg)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
 ## Install

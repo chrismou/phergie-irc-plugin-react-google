@@ -1,6 +1,6 @@
 <?php
 /**
- * Phergie plugin for performing Google searches (https://github.com/chrismou/phergie-irc-plugin-react-google)
+ * Phergie plugin for returning Google search results and estimated result counts (https://github.com/chrismou/phergie-irc-plugin-react-google)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
