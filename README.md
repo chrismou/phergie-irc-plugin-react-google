@@ -20,10 +20,22 @@ See Phergie documentation for more information on
 
 ## Configuration
 
-Add the following line to your config file:
+This plugin requires the [Command plugin](https://github.com/phergie/phergie-irc-plugin-react-command) to recognise commands, and the
+[http plugin](https://github.com/WyriHaximus/PhergieHttp) to query Google for your search results.
+
+If you're new to Phergie or Phergie plugins, see the [Phergie setup instructions](https://github.com/phergie/phergie-irc-bot-react/wiki/Usage#configuration)
+for more information.  Otherwise, add the following references to your config file:
 
 ```php
-new Chrismou\Phergie\Plugin\Google\Plugin
+return array(
+	// ...
+    'plugins' => array(
+    	new \Chrismou\Phergie\Plugin\Google\Plugin
+		new \Phergie\Irc\Plugin\React\Command\Plugin,	// dependency
+		new \WyriHaximus\Phergie\Plugin\Dns\Plugin,		// dependency
+		new \WyriHaximus\Phergie\Plugin\Http\Plugin		// dependency
+	)
+)
 ```
 
 By default, the plugin will respond to both google and g for Google searches, and googlecount and gc for estimated result 
@@ -33,7 +45,7 @@ Or, you can pass references to the providers you want to use as a config array, 
 the bot to respond to and the value is the class to use.
 
 ```php
-new Chrismou\Phergie\Plugin\Google\Plugin(array(
+new \Chrismou\Phergie\Plugin\Google\Plugin(array(
     'providers' => array(
         "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
         "g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
