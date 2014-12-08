@@ -117,7 +117,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         Phake::verify($plugin->getEventEmitter())->emit('http.request', Phake::capture($httpClassConfig));
 
 		// Grab a provider class
-		$provider = $plugin->getProvider($this->event);
+		$provider = $plugin->getProvider($this->event->getCustomCommand());
 
 		$this->assertInternalType('array', $httpClassConfig);
 		$this->assertCount(1, $httpClassConfig);
@@ -150,7 +150,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
 		// Grab the plugin,. provider, and a primed HTTP class
 		$plugin = $this->getPlugin();
-		$provider = $plugin->getProvider($this->event);
+		$provider = $plugin->getProvider($this->event->getCustomCommand());
 
 		// Grab the success callback
 		$resolve = $httpConfig['resolveCallback'];

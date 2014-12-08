@@ -70,7 +70,7 @@ class Plugin extends AbstractPlugin
 	 */
 	public function handleCommand(Event $event, Queue $queue)
 	{
-		$provider = $this->getProvider($event);
+		$provider = $this->getProvider($event->getCustomCommand());
 
         if ($provider) {
 		    $request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
@@ -87,7 +87,8 @@ class Plugin extends AbstractPlugin
 	 */
 	public function handleCommandHelp(Event $event, Queue $queue)
 	{
-		$provider = $this->getProvider($event);
+		$params = $event->getCustomParams();
+		$provider = $this->getProvider($params[0]);
 		$this->sendHelpReply($event, $queue, $provider->getHelpLines());
 	}
 
@@ -97,9 +98,8 @@ class Plugin extends AbstractPlugin
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @return \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider|false
 	 */
-	public function getProvider(Event $event)
+	public function getProvider($command)
 	{
-		$command = $event->getCustomCommand();
 		return (isset($this->providers[$command]) && class_exists($this->providers[$command])) ? new $this->providers[$command] : false;
 	}
 
