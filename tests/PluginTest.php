@@ -111,7 +111,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testSearchCountHelpCommand()
 	{
-		$this->doHelpCommandTest("help", array("google"));
+		$this->doHelpCommandTest("help", array("googlecount"));
 	}
 
 	/**
