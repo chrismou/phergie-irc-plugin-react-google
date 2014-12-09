@@ -87,9 +87,13 @@ class Plugin extends AbstractPlugin
 	 */
 	public function handleCommandHelp(Event $event, Queue $queue)
 	{
+
 		$params = $event->getCustomParams();
-		$provider = $this->getProvider($params[0]);
-		$this->sendHelpReply($event, $queue, $provider->getHelpLines());
+		$provider = $this->getProvider(($event->getCustomCommand() == "help") ? $params[0] : $event->getCustomCommand());
+
+		if ($provider) {
+			$this->sendHelpReply($event, $queue, $provider->getHelpLines());
+		}
 	}
 
 	/**

@@ -70,7 +70,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests that the default providers exist
 	 */
-	public function testDefaultProviderClassesExist() {
+	public function testDefaultProviderClassesExist()
+    {
 		$providers = $this->getPlugin()->getProviders();
 
 		foreach ($providers as $command => $class) {
@@ -79,20 +80,38 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 		}
 	}
 
+    /**
+     * Tests for the default "google" command
+     */
+    public function testSearchCommand()
+    {
+        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $this->doResolveTest("google", $httpConfig);
+    }
+
+    /**
+     * Tests for the default "google" command
+     */
+    public function testSearchHelpCommand()
+    {
+        $this->doHelpCommandTest("help", array("google"));
+    }
+
 	/**
-	 * Tests basic tests for the default "google" command
+	 * Tests the default "googlecount" command
 	 */
-	public function testSearchCommand() {
-		$httpConfig = $this->doCommandTest("google", array("test", "search"));
-		$this->doResolveTest("google", $httpConfig);
+	public function testSearchCountCommand()
+    {
+		$httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
+		$this->doResolveTest("googlecount", $httpConfig);
 	}
 
 	/**
-	 * Tests basic tests for the default "googlecount" command
+	 * Tests for the default "google" command
 	 */
-	public function testSearchCountCommand() {
-		$httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
-		$this->doResolveTest("googlecount", $httpConfig);
+	public function testSearchCountHelpCommand()
+	{
+		$this->doHelpCommandTest("help", array("google"));
 	}
 
 	/**
@@ -114,25 +133,61 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->event)->getCustomParams()->thenReturn($params);
 
         $plugin->handleCommand($this->event, $this->queue);
-        Phake::verify($plugin->getEventEmitter())->emit('http.request', Phake::capture($httpClassConfig));
+        Phake::verify($plugin->getEventEmitter())->emit('http.request', Phake::capture($httpConfig));
 
 		// Grab a provider class
 		$provider = $plugin->getProvider($this->event->getCustomCommand());
 
-		$this->assertInternalType('array', $httpClassConfig);
-		$this->assertCount(1, $httpClassConfig);
-		$request = reset($httpClassConfig);
-		$this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
-		$this->assertSame($provider->getApiRequestUrl($this->event), $request->getUrl());
+        $this->verifyHttpConfig($httpConfig, $provider);
 
-		$config = $request->getConfig();
-		$this->assertInternalType('array', $config);
-		$this->assertArrayHasKey('resolveCallback', $config);
-		$this->assertInternalType('callable', $config['resolveCallback']);
-		$this->assertArrayHasKey('rejectCallback', $config);
-		$this->assertInternalType('callable', $config['rejectCallback']);
+        $request = reset($httpConfig);
 
-        return $config;
+        return $request->getConfig();
+    }
+
+    /**
+     * Tests handCommand() is doing what it's supposed to
+     *
+     * @param string $command
+     * @param array $params
+     *
+     * @return array $httpConfig
+     */
+    protected function doHelpCommandTest($command, $params)
+    {
+        $this->assertInternalType('array', $params);
+
+        $plugin = $this->getPlugin();
+
+        Phake::when($this->event)->getSource()->thenReturn('#channel');
+        Phake::when($this->event)->getCommand()->thenReturn('PRIVMSG');
+        Phake::when($this->event)->getCustomCommand()->thenReturn($command);
+        Phake::when($this->event)->getCustomParams()->thenReturn($params);
+
+        $plugin->handleCommandHelp($this->event, $this->queue);
+
+        // Grab a provider class
+        $provider = $plugin->getProvider($params[0]);
+
+        foreach ($provider->getHelpLines() as $responseLine) {
+            Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
+        }
+    }
+
+    protected function verifyHttpConfig($httpConfig, $provider)
+    {
+        $this->assertInternalType('array', $httpConfig);
+        $this->assertCount(1, $httpConfig);
+        $request = reset($httpConfig);
+        $this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
+        $this->assertSame($provider->getApiRequestUrl($this->event), $request->getUrl());
+
+        $config = $request->getConfig();
+        $this->assertInternalType('array', $config);
+        $this->assertArrayHasKey('resolveCallback', $config);
+        $this->assertInternalType('callable', $config['resolveCallback']);
+        $this->assertArrayHasKey('rejectCallback', $config);
+        $this->assertInternalType('callable', $config['rejectCallback']);
     }
 
 	/**
