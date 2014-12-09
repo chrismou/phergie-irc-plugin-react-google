@@ -24,7 +24,11 @@ use Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface;
  */
 class Plugin extends AbstractPlugin
 {
-
+	/**
+	 * Array of default providers
+	 *
+	 * @var array
+	 */
 	protected $providers = array(
 		"google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
 		"g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
@@ -32,11 +36,12 @@ class Plugin extends AbstractPlugin
 		"gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
 	);
 
+
     /**
      * Accepts plugin configuration.
      *
      * Supported keys:
-     *
+     *		providers - array of provider classes to replace the default set ($this->providers)
      *
      *
      * @param array $config
@@ -46,8 +51,9 @@ class Plugin extends AbstractPlugin
         if (isset($config['providers']) && is_array($config['providers'])) $this->providers = $config['providers'];
     }
 
+
     /**
-     *
+     * Return an array of commands and associated methods
      *
      * @return array
      */
@@ -62,8 +68,9 @@ class Plugin extends AbstractPlugin
 		return $events;
     }
 
+
 	/**
-	 *
+	 * Main plugin handler for registered action commands
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -78,12 +85,12 @@ class Plugin extends AbstractPlugin
         }
 	}
 
+
 	/**
-	 *
+	 * Main plugin handler for help requests
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface
 	 */
 	public function handleCommandHelp(Event $event, Queue $queue)
 	{
@@ -92,14 +99,15 @@ class Plugin extends AbstractPlugin
 		$provider = $this->getProvider(($event->getCustomCommand() == "help") ? $params[0] : $event->getCustomCommand());
 
 		if ($provider) {
-			$this->sendHelpReply($event, $queue, $provider->getHelpLines());
+			$this->sendIrcResponse($event, $queue, $provider->getHelpLines());
 		}
 	}
 
+
 	/**
+	 * Get a single provider class by command
 	 *
-	 *
-	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param string $command
 	 * @return \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider|false
 	 */
 	public function getProvider($command)
@@ -107,22 +115,9 @@ class Plugin extends AbstractPlugin
 		return (isset($this->providers[$command]) && class_exists($this->providers[$command])) ? new $this->providers[$command] : false;
 	}
 
-	/**
-	 *
-	 *
-	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-	 * @param array $messages
-	 */
-	protected function sendHelpReply(Event $event, Queue $queue, array $messages)
-	{
-		foreach ($messages as $message) {
-			$this->sendIrcResponse($event, $queue, $message);
-		}
-	}
 
 	/**
-	 *
+	 * Set up the API request and set the callbacks
 	 *
 	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
 	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
@@ -136,28 +131,46 @@ class Plugin extends AbstractPlugin
 		return new HttpRequest(array(
 			'url' => $provider->getApiRequestUrl($event, $queue),
 			'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
-
-				//$provider->processSuccessResponse($event, $queue, $data);
-				foreach ((array) $provider->getSuccessLines($event, $data) as $ircResponseLine) {
-					$self->sendIrcResponse($event, $queue, $ircResponseLine);
-				}
-
+				$self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
 			},
 			'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
-
-				//$provider->processFailedResponse($event, $queue, $error);
-				foreach ((array )$provider->getFailureIrcLines($event, $error) as $ircResponseLine) {
-					$self->sendIrcResponse($event, $queue, $ircResponseLine);
-				}
-
+				$self->sendIrcResponse($event, $queue, $provider->getFailureIrcLines($event, $error));
 			}
 		));
 	}
 
-	public function sendIrcResponse(Event $event, Queue $queue, $ircResponseLine) {
+
+	/**
+	 * Send an array of response lines back to IRC
+	 *
+	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
+	 * @param array $ircResponse
+	 */
+	protected function sendIrcResponse(Event $event, Queue $queue, array $ircResponse)
+	{
+		foreach ($ircResponse as $ircResponseLine) {
+			$this->sendIrcResponseLine($event, $queue, $ircResponseLine);
+		}
+	}
+
+
+	/**
+	 * Send a single response line back to IRC
+	 *
+	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+	 * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
+	 * @param string $ircResponseLine
+	 */
+	protected function sendIrcResponseLine(Event $event, Queue $queue, $ircResponseLine)
+	{
 		$queue->ircPrivmsg($event->getSource(), $ircResponseLine);
 	}
 
+
+	/**
+	 * Return an array of providers classes
+	 */
 	public function getProviders()
 	{
 		return $this->providers;

@@ -150,8 +150,6 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      *
      * @param string $command
      * @param array $params
-     *
-     * @return array $httpConfig
      */
     protected function doHelpCommandTest($command, $params)
     {
@@ -174,14 +172,27 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    protected function verifyHttpConfig($httpConfig, $provider)
+	/**
+	 * Tests handCommand() is doing what it's supposed to
+	 *
+	 * @param array $httpConfig
+	 * @param string $provider
+	 */
+    protected function verifyHttpConfig(array $httpConfig, $provider)
     {
+		// Check we have an array with one element
         $this->assertInternalType('array', $httpConfig);
         $this->assertCount(1, $httpConfig);
+
         $request = reset($httpConfig);
+
+		// Check we have an instance of the http plugin
         $this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
+
+		// Check the url stored by htttp is the same as what we've called
         $this->assertSame($provider->getApiRequestUrl($this->event), $request->getUrl());
 
+		// Grab the response config and check the required callbacks exist
         $config = $request->getConfig();
         $this->assertInternalType('array', $config);
         $this->assertArrayHasKey('resolveCallback', $config);
