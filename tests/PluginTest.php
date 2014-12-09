@@ -70,13 +70,17 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Tests that the default providers exist
 	 */
-	public function testDefaultProviderClassesExist()
+	public function testDefaultProvidersImplementation()
     {
 		$providers = $this->getPlugin()->getProviders();
 
 		foreach ($providers as $command => $class) {
+			// Check the class file physically exists
 			$providerExists = (class_exists($class)) ? true : false;
 			$this->assertTrue($providerExists, "Class ".$class." does not exist");
+
+			// Check it correct implements GoogleProviderInterface
+			if ($providerExists) $this->assertInstanceOf('Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface', new $class);
 		}
 	}
 
@@ -167,9 +171,11 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         // Grab a provider class
         $provider = $plugin->getProvider($params[0]);
 
-        foreach ($provider->getHelpLines() as $responseLine) {
-            Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
-        }
+		if ($provider) {
+			foreach ($provider->getHelpLines() as $responseLine) {
+				Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
+			}
+		}
     }
 
 	/**
