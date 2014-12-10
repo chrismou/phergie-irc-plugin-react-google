@@ -134,7 +134,7 @@ class Plugin extends AbstractPlugin
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
             },
             'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $provider->getFailureIrcLines($event, $error));
+                $self->sendIrcResponse($event, $queue, $provider->getFailureLines($event, $error));
             }
         ));
     }

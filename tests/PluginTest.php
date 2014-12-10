@@ -73,6 +73,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testDefaultProvidersImplementation()
     {
         $providers = $this->getPlugin()->getProviders();
+        $this->assertInternalType('array', $providers);
 
         foreach ($providers as $command => $class) {
             // Check the class file physically exists
@@ -91,6 +92,15 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $httpConfig = $this->doCommandTest("google", array("test", "search"));
         $this->doResolveTest("google", $httpConfig);
+    }
+
+    /**
+     * Tests for the default "google" command
+     */
+    public function testSearchCommandFailure()
+    {
+        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $this->doRejectTest("google", $httpConfig);
     }
 
     /**
@@ -211,35 +221,77 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests handCommand() is doing what it's supposed to
+     * Tests handCommand() handles resolveCallback correctly
      *
      * @param string $command
      * @param array $httpConfig
      */
     protected function doResolveTest($command, array $httpConfig)
     {
-        // Set some test method responses
-        Phake::when($this->event)->getSource()->thenReturn('#channel');
-        Phake::when($this->event)->getCommand()->thenReturn('PRIVMSG');
-        Phake::when($this->event)->getCustomCommand()->thenReturn($command);
+        $this->doPreCallbackSetup($command);
 
         // Grab the plugin,. provider, and a primed HTTP class
         $plugin = $this->getPlugin();
         $provider = $plugin->getProvider($this->event->getCustomCommand());
 
         // Grab the success callback
-        $resolve = $httpConfig['resolveCallback'];
+        $callback = $httpConfig['resolveCallback'];
 
         // Grab the test "successful response" file and generate what would be the IRC response array
         $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
         $responseLines = $provider->getSuccessLines($this->event, $data);
 
+        $this->doPostCallbackTests($data, $callback, $responseLines);
+    }
+
+    /**
+     * Tests handCommand() handles rejectCallback correctly
+     *
+     * @param string $command
+     * @param array $httpConfig
+     */
+    protected function doRejectTest($command, array $httpConfig)
+    {
+        $error = "Foobar";
+
+        $this->doPreCallbackSetup($command);
+
+        // Grab the plugin,. provider, and a primed HTTP class
+        $plugin = $this->getPlugin();
+        $provider = $plugin->getProvider($this->event->getCustomCommand());
+
+        // Grab the success callback
+        $callback = $httpConfig['rejectCallback'];
+
+        // Grab the test "successful response" file and generate what would be the IRC response array
+        $responseLines = $provider->getFailureLines($this->event, $error);
+
+        $this->doPostCallbackTests($error, $callback, $responseLines);
+    }
+
+    /**
+     * Sets mocks pre-callback
+     */
+
+    protected function doPreCallbackSetup($command)
+    {
+        Phake::when($this->event)->getSource()->thenReturn('#channel');
+        Phake::when($this->event)->getCommand()->thenReturn('PRIVMSG');
+        Phake::when($this->event)->getCustomCommand()->thenReturn($command);
+    }
+
+    /**
+     * Sets mocks in preparation for a callback test
+     */
+
+    protected function doPostCallbackTests($data, $callback, $responseLines)
+    {
         // Test we've had an array back and it has at least one response message
         $this->assertInternalType('array', $responseLines);
         $this->assertArrayHasKey(0, $responseLines);
 
         // Run the resolveCallback callback
-        $resolve($data, $this->event, $this->queue);
+        $callback($data, $this->event, $this->queue);
 
         // Verify if each expected line was sent
         foreach ($responseLines as $responseLine) {
