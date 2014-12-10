@@ -12,28 +12,28 @@
     },
     "minimum-stability": "dev",
     "require": {
-		"php": ">=5.4.0",
+        "php": ">=5.4.0",
         "phergie/phergie-irc-bot-react": "dev-master",
         "phergie/phergie-irc-plugin-react-command": "1.0.*",
-		"wyrihaximus/phergie-http": "~1.0|~2.0"
+        "wyrihaximus/phergie-http": "~1.0|~2.0"
 
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.*",
         "phake/phake": "2.0.0-beta2",
-		"phergie/phergie-irc-plugin-react-autojoin": "1.0.*",
+        "phergie/phergie-irc-plugin-react-autojoin": "1.0.*",
         "phergie/phergie-irc-plugin-react-commandhelp": "dev-master",
-		"codeclimate/php-test-reporter": "dev-master",
-		"phergie/phergie-irc-plugin-react-commandalias": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "phergie/phergie-irc-plugin-react-commandalias": "dev-master"
     },
     "suggest": {
         "phergie/phergie-irc-plugin-react-commandhelp": "provides interactive help for commands",
-		"phergie/phergie-irc-plugin-react-commandalias": "set up aliases for bot commands"
+        "phergie/phergie-irc-plugin-react-commandalias": "set up aliases for bot commands"
     },
     "autoload": {
         "psr-4": {
-			"Chrismou\\Phergie\\Plugin\\Google\\": "src"
-		}
+            "Chrismou\\Phergie\\Plugin\\Google\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
