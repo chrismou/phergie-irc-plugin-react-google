@@ -44,7 +44,7 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getApiRequestUrl(Event $event)
     {
- $event->getCustomParams();
+        $params = $event->getCustomParams();
         $query = trim(implode(" ", $params));
 
         $querystringParams = array(
