@@ -15,14 +15,14 @@ use Phergie\Irc\Bot\React\EventQueueInterface;
 
 interface GoogleProviderInterface {
 
-	function validateParams(array $params);
+    function validateParams(array $params);
 
-	function getApiRequestUrl(CommandEvent $event);
+    function getApiRequestUrl(CommandEvent $event);
 
-	function getSuccessLines(CommandEvent $event, $apiResponse);
+    function getSuccessLines(CommandEvent $event, $apiResponse);
 
-	function getFailureLines(CommandEvent $event, $apiError);
+    function getFailureLines(CommandEvent $event, $apiError);
 
-	function getHelpLines();
+    function getHelpLines();
 
 }

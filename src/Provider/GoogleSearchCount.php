@@ -21,42 +21,41 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
  */
 class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 {
-	/**
-	 * Process the response (when the request is successful)
-	 *
-	 * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-	 * @param string $apiResponse
-	 *
-	 * @return array
-	 */
-	public function getSuccessLines(Event $event, $apiResponse)
-	{
-		$json = json_decode($apiResponse);
-		$json = $json->responseData;
+    /**
+     * Process the response (when the request is successful)
+     *
+     * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+     * @param string $apiResponse
+     *
+     * @return array
+     */
+    public function getSuccessLines(Event $event, $apiResponse)
+    {
+        $json = json_decode($apiResponse);
+        $json = $json->responseData;
 
-		$messages = array();
+        $messages = array();
 
-		$messages[] = sprintf(
-			"%s results [ %s ]",
+        $messages[] = sprintf(
+            "%s results [ %s ]",
             ($json->cursor->estimatedResultCount) ? $json->cursor->estimatedResultCount : "0",
-			$json->cursor->moreResultsUrl
-		);
+            $json->cursor->moreResultsUrl
+        );
 
-		return $messages;
-	}
+        return $messages;
+    }
 
-	/**
-	 * Returns an array of lines for the help response
-	 *
-	 * @return array
-	 */
-	public function getHelpLines()
-	{
-		return array(
-			'Usage: googlecount [search query]',
-			'[search query] - the word or phrase you want to search for',
-			'Instructs the bot to query Google and respond with the estimated result count'
-		);
-	}
-
+    /**
+     * Returns an array of lines for the help response
+     *
+     * @return array
+     */
+    public function getHelpLines()
+    {
+        return array(
+            'Usage: googlecount [search query]',
+            '[search query] - the word or phrase you want to search for',
+            'Instructs the bot to query Google and respond with the estimated result count'
+        );
+    }
 }
