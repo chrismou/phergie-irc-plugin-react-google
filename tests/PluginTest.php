@@ -91,7 +91,18 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchCommand()
     {
         $httpConfig = $this->doCommandTest("google", array("test", "search"));
-        $this->doResolveTest("google", $httpConfig);
+        $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
+        $this->doResolveTest("google", $data, $httpConfig);
+    }
+
+    /**
+     * Tests for the default "google" command
+     */
+    public function testSearchCommandNoResults()
+    {
+        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $data = file_get_contents(__DIR__ . '/_data/webSearchNoResults.json');
+        $this->doResolveNoResultsTest("google", $data, $httpConfig);
     }
 
     /**
@@ -117,7 +128,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchCountCommand()
     {
         $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
-        $this->doResolveTest("googlecount", $httpConfig);
+        $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
+        $this->doResolveTest("googlecount", $data, $httpConfig);
     }
 
     /**
@@ -226,21 +238,25 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * @param string $command
      * @param array $httpConfig
      */
-    protected function doResolveTest($command, array $httpConfig)
+    protected function doResolveTest($command, $data, array $httpConfig)
     {
         $this->doPreCallbackSetup($command);
-
-        // Grab the plugin,. provider, and a primed HTTP class
-        $plugin = $this->getPlugin();
-        $provider = $plugin->getProvider($this->event->getCustomCommand());
-
-        // Grab the success callback
         $callback = $httpConfig['resolveCallback'];
+        $responseLines = $this->getPlugin()->getProvider($command)->getSuccessLines($this->event, $data);
+        $this->doPostCallbackTests($data, $callback, $responseLines);
+    }
 
-        // Grab the test "successful response" file and generate what would be the IRC response array
-        $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
-        $responseLines = $provider->getSuccessLines($this->event, $data);
-
+    /**
+     * Tests handCommand() handles resolveCallback correctly
+     *
+     * @param string $command
+     * @param array $httpConfig
+     */
+    protected function doResolveNoResultsTest($command, $data, array $httpConfig)
+    {
+        $this->doPreCallbackSetup($command);
+        $callback = $httpConfig['resolveCallback'];
+        $responseLines = $this->getPlugin()->getProvider($command)->getNoResultsLines($this->event, $data);
         $this->doPostCallbackTests($data, $callback, $responseLines);
     }
 
@@ -253,24 +269,16 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     protected function doRejectTest($command, array $httpConfig)
     {
         $error = "Foobar";
-
         $this->doPreCallbackSetup($command);
-
-        // Grab the plugin,. provider, and a primed HTTP class
-        $plugin = $this->getPlugin();
-        $provider = $plugin->getProvider($this->event->getCustomCommand());
-
-        // Grab the success callback
         $callback = $httpConfig['rejectCallback'];
-
-        // Grab the test "successful response" file and generate what would be the IRC response array
-        $responseLines = $provider->getFailureLines($this->event, $error);
-
+        $responseLines = $this->getPlugin()->getProvider($command)->getRejectLines($this->event, $error);
         $this->doPostCallbackTests($error, $callback, $responseLines);
     }
 
     /**
      * Sets mocks pre-callback
+     *
+     * @param string $command
      */
 
     protected function doPreCallbackSetup($command)
@@ -282,6 +290,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Sets mocks in preparation for a callback test
+     *
+     * @param string $data
+     * @param string $command
+     * @param string $command
      */
 
     protected function doPostCallbackTests($data, $callback, $responseLines)

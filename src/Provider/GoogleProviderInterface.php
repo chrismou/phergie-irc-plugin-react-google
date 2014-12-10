@@ -21,7 +21,9 @@ interface GoogleProviderInterface {
 
     function getSuccessLines(CommandEvent $event, $apiResponse);
 
-    function getFailureLines(CommandEvent $event, $apiError);
+    function getRejectLines(CommandEvent $event, $apiError);
+
+    function getNoResultsLines(CommandEvent $event, $apiResponse);
 
     function getHelpLines();
 

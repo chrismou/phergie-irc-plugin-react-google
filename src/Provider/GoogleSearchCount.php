@@ -38,7 +38,7 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
 
         $messages[] = sprintf(
             "%s results [ %s ]",
-            ($json->cursor->estimatedResultCount) ? $json->cursor->estimatedResultCount : "0",
+            (isset($json->cursor->estimatedResultCount)) ? $json->cursor->estimatedResultCount : "0",
             $json->cursor->moreResultsUrl
         );
 

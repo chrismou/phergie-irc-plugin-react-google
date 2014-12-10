@@ -68,35 +68,45 @@ class GoogleSearch implements GoogleProviderInterface
         $json = json_decode($apiResponse);
         $json = $json->responseData;
 
-        $messages = array();
-
-        if ($json->cursor->estimatedResultCount > 0) {
+        if (isset($json->cursor->estimatedResultCount) && $json->cursor->estimatedResultCount > 0) {
+            $messages = array();
             $messages[] = sprintf(
                 "%s [ %s ]",
                 $json->results[0]->titleNoFormatting,
                 $json->results[0]->url
             );
             $messages[] = sprintf("More results: %s", $json->cursor->moreResultsUrl);
-
         } else {
-            $messages[] = 'No results for this query';
+            $messages = $this->getNoResultsLines($event, $apiResponse);
         }
 
         return $messages;
     }
 
     /**
-     * Process the response (when the request fails)
+     * Return an array of lines to send back to IRC when there are no results
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-     * @param string  $apiError
+     * @param string $apiResponse
      *
      * @return array
      */
-    public function getFailureLines(Event $event, $apiError)
+    public function getNoResultsLines(Event $event, $apiResponse)
     {
-        //$queue->ircPrivmsg($event->getSource(), "something went wrong... ಠ_ಠ");
-        return array("something went wrong... ಠ_ಠ");
+        return array('No results for this query');
+    }
+
+    /**
+     * Return an array of lines to send back to IRC when the request fails
+     *
+     * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+     * @param string $apiError
+     *
+     * @return array
+     */
+    public function getRejectLines(Event $event, $apiError)
+    {
+        return array('something went wrong... ಠ_ಠ');
     }
 
     /**
