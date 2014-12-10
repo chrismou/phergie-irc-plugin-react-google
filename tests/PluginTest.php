@@ -96,7 +96,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests for the default "google" command
+     * Tests for the default "google" command with no results
      */
     public function testSearchCommandNoResults()
     {
@@ -106,7 +106,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests for the default "google" command
+     * Tests for the default "google" command with a connection failure
      */
     public function testSearchCommandFailure()
     {
@@ -115,7 +115,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests for the default "google" command
+     * Tests for the default "google" help command
      */
     public function testSearchHelpCommand()
     {
@@ -133,7 +133,16 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests for the default "google" command
+     * Tests for the default "googlecount" command with a connection failure
+     */
+    public function testSearchCountCommandFailure()
+    {
+        $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
+        $this->doRejectTest("googlecount", $httpConfig);
+    }
+
+    /**
+     * Tests for the default "google" help command
      */
     public function testSearchCountHelpCommand()
     {
