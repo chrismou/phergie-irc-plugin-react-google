@@ -24,29 +24,21 @@ use Chrismou\Phergie\Plugin\Google\Plugin;
 class PluginTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Mock event emitter
-     *
      * @var \Evenement\EventEmitterInterface
      */
     protected $emitter;
 
     /**
-     * Mock event
-     *
      * @var \Phergie\Irc\Event\EventInterface
      */
     protected $event;
 
     /**
-     * Mock event queue
-     *
      * @var \Phergie\Irc\Bot\React\EventQueueInterface
      */
     protected $queue;
 
     /**
-     * Mock logger
-     *
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
@@ -213,7 +205,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests handCommand() is doing what it's supposed to
+     * Verify the http object looks like what we're expecting
      *
      * @param array $httpConfig
      * @param string $provider
@@ -310,6 +302,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         // Test we've had an array back and it has at least one response message
         $this->assertInternalType('array', $responseLines);
         $this->assertArrayHasKey(0, $responseLines);
+
+        $this->assertInternalType('callable', $callback);
 
         // Run the resolveCallback callback
         $callback($data, $this->event, $this->queue);

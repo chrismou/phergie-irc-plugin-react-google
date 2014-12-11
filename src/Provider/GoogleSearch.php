@@ -56,7 +56,7 @@ class GoogleSearch implements GoogleProviderInterface
     }
 
     /**
-     * Process the response (when the request is successful) and return an array of lines to send back to IRC
+     * Returns an array of lines to send back to IRC when the http request is successful
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiResponse
@@ -84,7 +84,7 @@ class GoogleSearch implements GoogleProviderInterface
     }
 
     /**
-     * Return an array of lines to send back to IRC when there are no results
+     * Returns an array of lines to send back to IRC when there are no results
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiResponse
@@ -97,7 +97,7 @@ class GoogleSearch implements GoogleProviderInterface
     }
 
     /**
-     * Return an array of lines to send back to IRC when the request fails
+     * Returns an array of lines to send back to IRC when the http request fails
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiError

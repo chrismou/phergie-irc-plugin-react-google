@@ -1,4 +1,4 @@
-# chrismou/phergie-irc-plugin-react-google
+# Google plugin for [Phergie](http://github.com/phergie/phergie-irc-bot-react/)
 
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
