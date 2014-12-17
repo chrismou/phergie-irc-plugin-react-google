@@ -3,6 +3,16 @@
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
 [![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google.svg)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
+[![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google)
+[![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google)
+
+## About
+
+This plugin provides a simple method for performing Google lookups from within IRC.  By default, the plugin accepts one of 2 commands (google and googlecount) and outputs either the top result
+for your search query, or the estimated result count.
+
+I'd also recommend installing the [CommandAlias plugin](https://github.com/phergie/phergie-irc-plugin-react-commandalias), which can be used to alias the commands (ie, to use "g" instead of "google")
+
 ## Install
 
 The recommended method of installation is [through composer](http://getcomposer.org).
@@ -38,7 +48,7 @@ return array(
 )
 ```
 
-By default, the plugin will respond to both google and g for Google searches, and googlecount and gc for estimated result 
+By default, the plugin will respond to "google" for Google searches, and "googlecount" for estimated results 
 counts.
 
 Or, you can pass references to the providers you want to use as a config array, where the array key is the command you want 
@@ -48,9 +58,7 @@ the bot to respond to and the value is the class to use.
 new \Chrismou\Phergie\Plugin\Google\Plugin(array(
     'providers' => array(
         "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-        "g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
-        "gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
     )
 )),
 ```
