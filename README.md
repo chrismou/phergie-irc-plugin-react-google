@@ -48,7 +48,7 @@ return array(
 )
 ```
 
-By default, the plugin will respond to "google" for Google searches, and "googlecount" for estimated results 
+By default, the plugin will respond to "google" for Google searches, and "googlecount" for estimated results.
 counts.
 
 Or, you can pass references to the providers you want to use as a config array, where the array key is the command you want 

@@ -11,8 +11,6 @@
 namespace Chrismou\Phergie\Tests\Plugin\Google;
 
 use Phake;
-use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
-use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use Chrismou\Phergie\Plugin\Google\Plugin;
 
 /**
@@ -208,7 +206,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Verify the http object looks like what we're expecting
      *
      * @param array $httpConfig
-     * @param string $provider
+     * @param \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider
      */
     protected function verifyHttpConfig(array $httpConfig, $provider)
     {
@@ -237,6 +235,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handCommand() handles resolveCallback correctly
      *
      * @param string $command
+     * @param string $data
      * @param array $httpConfig
      */
     protected function doResolveTest($command, $data, array $httpConfig)
@@ -251,6 +250,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handCommand() handles resolveCallback correctly
      *
      * @param string $command
+     * @param string $data
      * @param array $httpConfig
      */
     protected function doResolveNoResultsTest($command, $data, array $httpConfig)
@@ -293,8 +293,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Sets mocks in preparation for a callback test
      *
      * @param string $data
-     * @param string $command
-     * @param string $command
+     * @param callable $callback
+     * @param array $responseLines
      */
 
     protected function doPostCallbackTests($data, $callback, $responseLines)
