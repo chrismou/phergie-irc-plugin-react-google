@@ -10,7 +10,6 @@
 
 namespace Chrismou\Phergie\Plugin\Google\Provider;
 
-use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
 /**
@@ -21,7 +20,9 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
  */
 class GoogleSearch implements GoogleProviderInterface
 {
-
+    /**
+     * @var string
+     */
     protected $apiUrl = 'http://ajax.googleapis.com/ajax/services/search/web';
 
     /**

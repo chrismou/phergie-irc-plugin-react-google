@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75f5de78839fc2f5377bbf0506b36a0e",
+    "hash": "76a895086a4541cdc542d28d2e5eb784",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "eaadef477c9f7fdece3120cd68c38143c0cd4db4"
+                "reference": "47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/eaadef477c9f7fdece3120cd68c38143c0cd4db4",
-                "reference": "eaadef477c9f7fdece3120cd68c38143c0cd4db4",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3",
+                "reference": "47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-12-11 05:46:03"
+            "time": "2014-12-18 18:45:38"
         },
         {
             "name": "monolog/monolog",
@@ -212,17 +212,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-bot-react.git",
-                "reference": "190ca12a6c9ae2c80694b93a8a842b98dc5924a0"
+                "reference": "9f29b70d1305ec254fb849b9a9a589f1f2191261"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-bot-react/zipball/190ca12a6c9ae2c80694b93a8a842b98dc5924a0",
-                "reference": "190ca12a6c9ae2c80694b93a8a842b98dc5924a0",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-bot-react/zipball/9f29b70d1305ec254fb849b9a9a589f1f2191261",
+                "reference": "9f29b70d1305ec254fb849b9a9a589f1f2191261",
                 "shasum": ""
             },
             "require": {
-                "evenement/evenement": "2.0.*",
-                "monolog/monolog": "1.6.*",
+                "evenement/evenement": "~2.0",
+                "monolog/monolog": "~1.6",
                 "phergie/phergie-irc-client-react": "2.*",
                 "phergie/phergie-irc-connection": "1.*",
                 "phergie/phergie-irc-event": "1.*",
@@ -251,7 +251,7 @@
                 "irc",
                 "react"
             ],
-            "time": "2014-12-13 15:55:55"
+            "time": "2014-12-17 14:14:05"
         },
         {
             "name": "phergie/phergie-irc-client-react",
@@ -882,12 +882,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "50f680f99c702c831314c00220c222aaff8916f8"
+                "reference": "24f2c9ea9353cbb25dc40786272f0b4f42ba3d3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/50f680f99c702c831314c00220c222aaff8916f8",
-                "reference": "50f680f99c702c831314c00220c222aaff8916f8",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/24f2c9ea9353cbb25dc40786272f0b4f42ba3d3c",
+                "reference": "24f2c9ea9353cbb25dc40786272f0b4f42ba3d3c",
                 "shasum": ""
             },
             "require": {
@@ -895,10 +895,10 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.0",
+                "symfony/config": "~2.0,>=2.0.5",
                 "symfony/dependency-injection": "~2.6",
                 "symfony/expression-language": "~2.6",
-                "symfony/stopwatch": "~2.2"
+                "symfony/stopwatch": "~2.3"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -931,7 +931,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-12-12 16:23:01"
+            "time": "2014-12-16 20:28:45"
         },
         {
             "name": "wyrihaximus/phergie-dns",
@@ -1140,131 +1140,6 @@
                 "testing"
             ],
             "time": "2014-05-05 14:08:12"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-react-autojoin",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-autojoin.git",
-                "reference": "c9ce6e50eb7862ed22a40af937220f8f1987047b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-autojoin/zipball/c9ce6e50eb7862ed22a40af937220f8f1987047b",
-                "reference": "c9ce6e50eb7862ed22a40af937220f8f1987047b",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "dev-master"
-            },
-            "require-dev": {
-                "phake/phake": "1.0.*",
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\AutoJoin\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for automatically joining IRC channels",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2014-04-20 18:39:27"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-react-commandalias",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-commandalias.git",
-                "reference": "a4bea03b61799ad081ec5402e6c678a440841d14"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-commandalias/zipball/a4bea03b61799ad081ec5402e6c678a440841d14",
-                "reference": "a4bea03b61799ad081ec5402e6c678a440841d14",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "dev-master",
-                "phergie/phergie-irc-plugin-react-command": "1.0.*"
-            },
-            "require-dev": {
-                "phake/phake": "2.0.0-beta2",
-                "phpunit/phpunit": "4.1.*"
-            },
-            "suggest": {
-                "phergie/phergie-irc-plugin-react-commandhelp": "provides interactive help for commands"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\CommandAlias\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for enabling the use of custom aliases for existing bot commands",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2014-11-19 02:27:54"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-react-commandhelp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-commandhelp.git",
-                "reference": "fcdff45846ffd8f8967918aecede54b583ff8be0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-commandhelp/zipball/fcdff45846ffd8f8967918aecede54b583ff8be0",
-                "reference": "fcdff45846ffd8f8967918aecede54b583ff8be0",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "dev-master",
-                "phergie/phergie-irc-plugin-react-command": "1.0.*"
-            },
-            "require-dev": {
-                "phake/phake": "2.0.0-beta2",
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\CommandHelp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for providing usage information for available bot commands to users",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2014-11-19 02:28:04"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2229,11 +2104,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "phergie/phergie-irc-bot-react": 20,
-        "phergie/phergie-irc-plugin-react-commandhelp": 20,
-        "codeclimate/php-test-reporter": 20,
-        "phergie/phergie-irc-plugin-react-commandalias": 20
+        "codeclimate/php-test-reporter": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4.0"
     },
