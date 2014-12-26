@@ -102,6 +102,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $httpConfig = $this->doCommandTest("google", array("test", "search"));
         $this->doRejectTest("google", $httpConfig);
+        $this->doCommandInvalidParamsTest(array());
     }
 
     /**
@@ -129,6 +130,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
         $this->doRejectTest("googlecount", $httpConfig);
+        $this->doCommandInvalidParamsTest(array());
     }
 
     /**
@@ -199,6 +201,27 @@ class PluginTest extends \PHPUnit_Framework_TestCase
             foreach ((array)$helpLines as $responseLine) {
                 Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
             }
+        }
+    }
+
+    /**
+     * Tests handleCommand() is doing what it's supposed to
+     * @return array $httpConfig
+     */
+    protected function doCommandInvalidParamsTest(array $params=array())
+    {
+        // GRab a fresh queue instance to test on
+        $queue = $this->getMockEventQueue();
+        // Set the "invalid" parameters
+        Phake::when($this->event)->getCustomParams()->thenReturn($params);
+        $plugin = $this->getPlugin();
+        $plugin->handleCommand($this->event, $queue);
+
+        $helpLines = $plugin->getProvider($this->event->getCustomCommand())->getHelpLines();
+        $this->assertInternalType('array', $helpLines);
+
+        foreach ((array)$helpLines as $responseLine) {
+            Phake::verify($queue)->ircPrivmsg('#channel', $responseLine);
         }
     }
 
