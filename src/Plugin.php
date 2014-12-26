@@ -31,7 +31,9 @@ class Plugin extends AbstractPlugin
      */
     protected $providers = array(
         "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+        "g" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount",
+        "gc" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
     );
 
 
@@ -76,10 +78,11 @@ class Plugin extends AbstractPlugin
     public function handleCommand(Event $event, Queue $queue)
     {
         $provider = $this->getProvider($event->getCustomCommand());
-
-        if ($provider) {
-            $request = ($provider->validateParams($event->getCustomParams())) ? $this->getApiRequest($event, $queue, $provider) : $this->handleCommandhelp($event, $queue);
+        if ($provider && $provider->validateParams($event->getCustomParams())) {
+            $request = $this->getApiRequest($event, $queue, $provider);
             $this->getEventEmitter()->emit('http.request', array($request));
+        } else {
+            $this->handleCommandhelp($event, $queue);
         }
     }
 

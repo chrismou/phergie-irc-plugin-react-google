@@ -13,8 +13,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
-        "phergie/phergie-irc-bot-react": "dev-master",
-        "phergie/phergie-irc-plugin-react-command": "1.0.*",
+        "phergie/phergie-irc-bot-react": "~1",
+        "phergie/phergie-irc-plugin-react-command": "~1.0",
         "wyrihaximus/phergie-http": "~1.0|~2.0"
 
     },
