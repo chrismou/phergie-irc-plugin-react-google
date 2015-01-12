@@ -11,7 +11,7 @@
 This plugin provides a simple method for performing Google lookups from within IRC.  By default, the plugin accepts one of 2 commands (google and googlecount) and outputs either the top result
 for your search query, or the estimated result count.
 
-I'd also recommend installing the [CommandAlias plugin](https://github.com/phergie/phergie-irc-plugin-react-commandalias), which can be used to alias the commands (ie, to use "g" instead of "google")
+I'd also recommend installing the [CommandAlias plugin](https://github.com/phergie/phergie-irc-plugin-react-commandalias), which can be used to alias the commands (ie, to use "g" instead of "google").
 
 ## Install
 
@@ -20,7 +20,7 @@ The recommended method of installation is [through composer](http://getcomposer.
 ```JSON
 {
     "require": {
-        "chrismou/phergie-irc-plugin-react-google": "dev-master"
+        "chrismou/phergie-irc-plugin-react-google": "~1"
     }
 }
 ```
