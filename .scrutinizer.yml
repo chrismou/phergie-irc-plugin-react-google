@@ -1,6 +1,5 @@
 tools:
-    external_code_coverage: false
-    php_code_coverage: true
+    external_code_coverage: true
 checks:
     php:
         code_rating: true
