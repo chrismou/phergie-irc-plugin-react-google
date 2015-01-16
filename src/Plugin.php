@@ -107,7 +107,7 @@ class Plugin extends AbstractPlugin
      * Get a single provider class by command
      *
      * @param string $command
-     * @return \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider|false
+     * @return mixed
      */
     public function getProvider($command)
     {
@@ -128,7 +128,7 @@ class Plugin extends AbstractPlugin
         $self = $this;
 
         return new HttpRequest(array(
-            'url' => $provider->getApiRequestUrl($event, $queue),
+            'url' => $provider->getApiRequestUrl($event),
             'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
             },
@@ -174,5 +174,4 @@ class Plugin extends AbstractPlugin
     {
         return $this->providers;
     }
-
 }

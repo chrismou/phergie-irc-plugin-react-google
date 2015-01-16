@@ -29,7 +29,7 @@ class GoogleSearch implements GoogleProviderInterface
      * Validate the provided parameters
      *
      * @param array $params
-     * @return true|false
+     * @return boolean
      */
     public function validateParams(array $params)
     {
@@ -40,7 +40,6 @@ class GoogleSearch implements GoogleProviderInterface
      * Get the url for the API request
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-     * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      * @return string
      */
     public function getApiRequestUrl(Event $event)

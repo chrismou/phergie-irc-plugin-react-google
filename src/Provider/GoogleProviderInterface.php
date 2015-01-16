@@ -21,7 +21,7 @@ interface GoogleProviderInterface
      *
      * @return string
      */
-    function getApiRequestUrl(CommandEvent $event);
+    public function getApiRequestUrl(CommandEvent $event);
 
     /**
      * Validate the provided parameters
@@ -29,9 +29,9 @@ interface GoogleProviderInterface
      *
      * @param array $params
      *
-     * @return true|false
+     * @return boolean
      */
-    function validateParams(array $params);
+    public function validateParams(array $params);
 
     /**
      * Returns an array of lines to send back to IRC when the http request is successful
@@ -41,7 +41,7 @@ interface GoogleProviderInterface
      *
      * @return array
      */
-    function getSuccessLines(CommandEvent $event, $apiResponse);
+    public function getSuccessLines(CommandEvent $event, $apiResponse);
 
     /**
      * Return an array of lines to send back to IRC when there are no results
@@ -51,7 +51,7 @@ interface GoogleProviderInterface
      *
      * @return array
      */
-    function getNoResultsLines(CommandEvent $event, $apiResponse);
+    public function getNoResultsLines(CommandEvent $event, $apiResponse);
 
     /**
      * Return an array of lines to send back to IRC when the request fails
@@ -61,13 +61,12 @@ interface GoogleProviderInterface
      *
      * @return array
      */
-    function getRejectLines(CommandEvent $event, $apiError);
+    public function getRejectLines(CommandEvent $event, $apiError);
 
     /**
      * Returns an array of lines for the help response
      *
      * @return array
      */
-    function getHelpLines();
-
+    public function getHelpLines();
 }
