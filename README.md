@@ -2,9 +2,9 @@
 
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
-[![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google.svg)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
-[![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google)
-[![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google)
+[![Build Status](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/build.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/?branch=master)
 
 ## About
 
