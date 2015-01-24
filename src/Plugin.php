@@ -39,7 +39,7 @@ class Plugin extends AbstractPlugin
      * Accepts plugin configuration.
      *
      * Supported keys:
-     *		providers - array of provider classes to replace the default set ($this->providers)
+     *        providers - array of provider classes to replace the default set ($this->providers)
      *
      *
      * @param array $config
@@ -59,8 +59,8 @@ class Plugin extends AbstractPlugin
     {
         $events = array();
         foreach ($this->providers as $command => $provider) {
-            $events['command.'.$command] = 'handleCommand';
-            $events['command.'.$command.'.help'] = 'handleCommandHelp';
+            $events['command.' . $command] = 'handleCommand';
+            $events['command.' . $command . '.help'] = 'handleCommandHelp';
         }
 
         return $events;
@@ -129,10 +129,10 @@ class Plugin extends AbstractPlugin
 
         return new HttpRequest(array(
             'url' => $provider->getApiRequestUrl($event),
-            'resolveCallback' => function($data) use ($self, $event, $queue, $provider) {
+            'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
             },
-            'rejectCallback' => function($error) use ($self, $event, $queue, $provider) {
+            'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getRejectLines($event, $error));
             }
         ));

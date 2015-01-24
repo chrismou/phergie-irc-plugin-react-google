@@ -42,7 +42,6 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     protected $logger;
 
 
-
     protected function setUp()
     {
         $this->event = Phake::mock('Phergie\Irc\Plugin\React\Command\CommandEvent');
@@ -68,7 +67,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         foreach ($providers as $command => $class) {
             // Check the class file physically exists
             $providerExists = (class_exists($class)) ? true : false;
-            $this->assertTrue($providerExists, "Class ".$class." does not exist");
+            $this->assertTrue($providerExists, "Class " . $class . " does not exist");
 
             // Check it correct implements GoogleProviderInterface
             if ($providerExists) $this->assertInstanceOf('Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface', new $class);
@@ -208,7 +207,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handleCommand() is doing what it's supposed to
      * @return array $httpConfig
      */
-    protected function doCommandInvalidParamsTest(array $params=array())
+    protected function doCommandInvalidParamsTest(array $params = array())
     {
         // GRab a fresh queue instance to test on
         $queue = $this->getMockEventQueue();
