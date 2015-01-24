@@ -46,7 +46,9 @@ class Plugin extends AbstractPlugin
      */
     public function __construct(array $config = array())
     {
-        if (isset($config['providers']) && is_array($config['providers'])) $this->providers = $config['providers'];
+        if (isset($config['providers']) && is_array($config['providers'])) {
+            $this->providers = $config['providers'];
+        }
     }
 
 
