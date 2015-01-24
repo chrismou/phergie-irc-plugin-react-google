@@ -75,6 +75,39 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tests valid custom providers can be set
+     */
+    public function testSetCustomProviders()
+    {
+        $testConfig = array(
+            "test1" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+            "test2" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+        );
+        $plugin = new Plugin(array("providers" => $testConfig));
+
+        foreach ($testConfig as $command => $provider) {
+            $this->assertInstanceOf($provider, $plugin->getProvider($command));
+        }
+    }
+
+    /**
+     * Tests non-existent custom providers are ignored
+     */
+    public function testSetCustomProvidersWithNonExistentClass()
+    {
+        $testConfig = array(
+            "test1" => "\\fake\\path\\to\\class",
+            "test2" => "\\another\\fake\\class"
+        );
+        $plugin = new Plugin(array("providers" => $testConfig));
+
+        foreach ($testConfig as $command => $provider) {
+            $this->assertEquals($plugin->getProvider($command), false);
+        }
+    }
+
+
+    /**
      * Tests for the default "google" command
      */
     public function testSearchCommand()
