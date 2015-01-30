@@ -9,7 +9,7 @@ drop me an email to the address listed in the [composer.json](composer.json) fil
 * Please follow the [PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) and [PHP-FIG Naming Conventions](https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-naming-conventions.md).
 * Ensure that the current tests pass - instructions are below. If you add something new, please add new tests where relevant.
 * Keep a meaningful git history - we're going to be checking over pull requests, and it'd help a lot if we can see at a glance what each commit relates to. If you had to make multiple minor commits while developing, please [squash](http://git-scm.com/book/en/Git-Tools-Rewriting-History) them before submitting.
-* Please [rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) where possible, to avoid merge conflicts and those noisy "merged from blah blah" commits.
+* Please [rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) where possible.
 
 
 ## Running Tests
