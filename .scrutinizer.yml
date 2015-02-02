@@ -8,3 +8,10 @@ tools:
         enabled: true
         config:
             standard: PSR2
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: true
+            before_parentheses:
+                closure_definition: true
