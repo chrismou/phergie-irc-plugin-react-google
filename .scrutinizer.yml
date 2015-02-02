@@ -8,6 +8,3 @@ tools:
         enabled: true
         config:
             standard: PSR2
-checks:
-    php:
-        no_space_between_concatenation_operator: false
