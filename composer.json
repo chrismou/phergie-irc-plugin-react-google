@@ -18,7 +18,6 @@
         "issues": "https://github.com/chrismou/phergie-irc-plugin-react-google/issues",
         "source": "https://github.com/chrismou/phergie-irc-plugin-react-google"
     },
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "phergie/phergie-irc-bot-react": "~1",
