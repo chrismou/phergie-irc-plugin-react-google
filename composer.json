@@ -43,5 +43,10 @@
         "psr-4": {
             "Chrismou\\Phergie\\Tests\\Plugin\\Google\\": "tests"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
