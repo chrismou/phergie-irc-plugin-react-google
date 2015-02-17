@@ -2,9 +2,9 @@
 
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
-[![Build Status](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/build.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/?branch=master)
+[![Build Status](https://img.shields.io/travis/chrismou/phergie-irc-plugin-react-google/master.svg?style=flat-square)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/chrismou/phergie-irc-plugin-react-google.svg?style=flat-square)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/chrismou/phergie-irc-plugin-react-google.svg?style=flat-square)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google)
 
 ## About
 
@@ -20,10 +20,13 @@ The recommended method of installation is [through composer](http://getcomposer.
 ```JSON
 {
     "require": {
-        "chrismou/phergie-irc-plugin-react-google": "~1"
+        "chrismou/phergie-irc-plugin-react-pingpong": "~1"
     }
 }
 ```
+
+If you want to run bleeding edge (I don't tend to push broken code to master, so you should be safe!) then change 
+`"~1"` to `"~1@dev"`.
 
 See Phergie documentation for more information on
 [installing and enabling plugins](https://github.com/phergie/phergie-irc-bot-react/wiki/Usage#plugins).

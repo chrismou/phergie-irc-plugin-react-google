@@ -10,7 +10,6 @@
 
 namespace Chrismou\Phergie\Plugin\Google\Provider;
 
-use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
 /**
