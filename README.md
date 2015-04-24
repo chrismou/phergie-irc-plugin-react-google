@@ -20,7 +20,7 @@ The recommended method of installation is [through composer](http://getcomposer.
 ```JSON
 {
     "require": {
-        "chrismou/phergie-irc-plugin-react-pingpong": "~1"
+        "chrismou/phergie-irc-plugin-react-google": "~1"
     }
 }
 ```
@@ -43,10 +43,10 @@ for more information.  Otherwise, add the following references to your config fi
 return array(
 	// ...
     'plugins' => array(
-    	new \Chrismou\Phergie\Plugin\Google\Plugin
+    		new \Chrismou\Phergie\Plugin\Google\Plugin,
 		new \Phergie\Irc\Plugin\React\Command\Plugin,	// dependency
-		new \WyriHaximus\Phergie\Plugin\Dns\Plugin,		// dependency
-		new \WyriHaximus\Phergie\Plugin\Http\Plugin		// dependency
+		new \WyriHaximus\Phergie\Plugin\Dns\Plugin,	// dependency
+		new \WyriHaximus\Phergie\Plugin\Http\Plugin	// dependency
 	)
 )
 ```
