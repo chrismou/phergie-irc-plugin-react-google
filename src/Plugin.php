@@ -36,7 +36,7 @@ class Plugin extends AbstractPlugin
 
 
     /**
-     * Accepts plugin configuration.
+     * Accepts plugin configuration
      *
      * Supported keys:
      *        providers - array of provider classes to replace the default set ($this->providers)
