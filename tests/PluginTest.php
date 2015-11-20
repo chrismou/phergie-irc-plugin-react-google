@@ -272,7 +272,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $request = reset($httpConfig);
 
         // Check we have an instance of the http plugin
-        $this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
+        $this->assertInstanceOf('\Phergie\Plugin\Http\Request', $request);
 
         // Check the url stored by htttp is the same as what we've called
         $this->assertSame($provider->getApiRequestUrl($this->event), $request->getUrl());
