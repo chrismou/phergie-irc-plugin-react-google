@@ -18,15 +18,8 @@ I'd also recommend installing the [CommandAlias plugin](https://github.com/pherg
 The recommended method of installation is [through composer](http://getcomposer.org).
 
 ```JSON
-{
-    "require": {
-        "chrismou/phergie-irc-plugin-react-google": "~1"
-    }
-}
+composer require chrismou/phergie-irc-plugin-react-google
 ```
-
-If you want to run bleeding edge (I don't tend to push broken code to master, so you should be safe!) then change 
-`"~1"` to `"~1@dev"`.
 
 See Phergie documentation for more information on
 [installing and enabling plugins](https://github.com/phergie/phergie-irc-bot-react/wiki/Usage#plugins).
@@ -41,13 +34,13 @@ for more information.  Otherwise, add the following references to your config fi
 
 ```php
 return array(
-	// ...
+    // ...
     'plugins' => array(
-    		new \Chrismou\Phergie\Plugin\Google\Plugin,
-		new \Phergie\Irc\Plugin\React\Command\Plugin,	// dependency
-		new \WyriHaximus\Phergie\Plugin\Dns\Plugin,	// dependency
-		new \WyriHaximus\Phergie\Plugin\Http\Plugin	// dependency
-	)
+        new \Chrismou\Phergie\Plugin\Google\Plugin,
+        new \Phergie\Irc\Plugin\React\Command\Plugin,	// dependency
+        new \WyriHaximus\Phergie\Plugin\Dns\Plugin,	// dependency
+        new \WyriHaximus\Phergie\Plugin\Http\Plugin	// dependency
+    )
 )
 ```
 
