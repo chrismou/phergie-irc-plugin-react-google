@@ -3,8 +3,8 @@
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning Google search results and estimated result counts.
 
 [![Build Status](https://img.shields.io/travis/chrismou/phergie-irc-plugin-react-google/master.svg?style=flat-square)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-google)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/chrismou/phergie-irc-plugin-react-google.svg?style=flat-square)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/chrismou/phergie-irc-plugin-react-google.svg?style=flat-square)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-google)
+[![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/coverage)
+[![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-google)
 
 ## About
 
