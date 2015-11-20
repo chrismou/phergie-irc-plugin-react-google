@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d05575e135a284aa3723d06c92fbfc4d",
-    "content-hash": "02862fa7a5a094404a2b1676917ec433",
+    "hash": "c6613df426ac7b961e68839d4d0e7eb3",
+    "content-hash": "c1d52de097605d7163cec72cf013c74c",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -572,23 +572,23 @@
         },
         {
             "name": "phergie/phergie-irc-parser",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-parser.git",
-                "reference": "29fd291f93b0881c5fc47ae6e5e41b96e7824805"
+                "reference": "cec7ec29ea9bbad5f3d1c0e0271279b3d58fe6ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-parser/zipball/29fd291f93b0881c5fc47ae6e5e41b96e7824805",
-                "reference": "29fd291f93b0881c5fc47ae6e5e41b96e7824805",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-parser/zipball/cec7ec29ea9bbad5f3d1c0e0271279b3d58fe6ce",
+                "reference": "cec7ec29ea9bbad5f3d1c0e0271279b3d58fe6ce",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.2"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.6"
+                "phergie/phergie-irc-bot-react-development": "~1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -605,7 +605,7 @@
                 "irc",
                 "parser"
             ],
-            "time": "2015-07-16 16:26:41"
+            "time": "2015-11-12 15:21:51"
         },
         {
             "name": "phergie/phergie-irc-plugin-dns",
