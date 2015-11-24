@@ -17,7 +17,7 @@ I'd also recommend installing the [CommandAlias plugin](https://github.com/pherg
 
 The recommended method of installation is [through composer](http://getcomposer.org).
 
-```JSON
+```
 composer require chrismou/phergie-irc-plugin-react-google
 ```
 
@@ -27,7 +27,7 @@ See Phergie documentation for more information on
 ## Configuration
 
 This plugin requires the [Command plugin](https://github.com/phergie/phergie-irc-plugin-react-command) to recognise commands, and the
-[http plugin](https://github.com/WyriHaximus/PhergieHttp) to query Google for your search results.
+[http plugin](https://github.com/phergie/plugin-http) to query Google for your search results.
 
 If you're new to Phergie or Phergie plugins, see the [Phergie setup instructions](https://github.com/phergie/phergie-irc-bot-react/wiki/Usage#configuration)
 for more information.  Otherwise, add the following references to your config file:
@@ -37,9 +37,9 @@ return array(
     // ...
     'plugins' => array(
         new \Chrismou\Phergie\Plugin\Google\Plugin,
-        new \Phergie\Irc\Plugin\React\Command\Plugin,	// dependency
-        new \WyriHaximus\Phergie\Plugin\Dns\Plugin,	// dependency
-        new \WyriHaximus\Phergie\Plugin\Http\Plugin	// dependency
+        new \Phergie\Irc\Plugin\React\Command\Plugin,  // dependency
+        new \Phergie\Plugin\Dns\Plugin,                // dependency
+        new \Phergie\Plugin\Http\Plugin	               // dependency
     )
 )
 ```
