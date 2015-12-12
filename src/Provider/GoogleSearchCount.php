@@ -30,7 +30,7 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
      */
     public function getSuccessLines(Event $event, $apiResponse)
     {
-        $json = json_decode($apiResponse);
+        $json = json_decode($apiResponse->getBody());
         $json = $json->responseData;
 
         $messages = array();

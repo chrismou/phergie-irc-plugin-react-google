@@ -65,7 +65,7 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getSuccessLines(Event $event, $apiResponse)
     {
-        $json = json_decode($apiResponse);
+        $json = json_decode($apiResponse->getBody());
         $json = $json->responseData;
 
         if (isset($json->cursor->estimatedResultCount) && $json->cursor->estimatedResultCount > 0) {
