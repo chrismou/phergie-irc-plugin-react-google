@@ -1,6 +1,7 @@
 <?php
 /**
- * Phergie plugin for returning Google search results and estimated result counts (https://github.com/chrismou/phergie-irc-plugin-react-google)
+ * Phergie plugin for returning Google search results and estimated result counts
+ * (https://github.com/chrismou/phergie-irc-plugin-react-google)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
  * @copyright Copyright (c) 2015 Chris Chrisostomou (https://mou.me)
@@ -98,7 +99,9 @@ class Plugin extends AbstractPlugin
     {
 
         $params = $event->getCustomParams();
-        $provider = $this->getProvider(($event->getCustomCommand() == "help") ? $params[0] : $event->getCustomCommand());
+        $provider = $this->getProvider(
+            ($event->getCustomCommand() === "help") ? $params[0] : $event->getCustomCommand()
+        );
 
         if ($provider) {
             $this->sendIrcResponse($event, $queue, $provider->getHelpLines());
@@ -114,7 +117,8 @@ class Plugin extends AbstractPlugin
      */
     public function getProvider($command)
     {
-        return (isset($this->providers[$command]) && class_exists($this->providers[$command])) ? new $this->providers[$command] : false;
+        $providerExists = (isset($this->providers[$command]) && class_exists($this->providers[$command]));
+        return ($providerExists) ? new $this->providers[$command] : false;
     }
 
 
