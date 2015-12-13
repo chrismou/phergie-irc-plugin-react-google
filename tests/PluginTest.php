@@ -27,12 +27,17 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     protected $emitter;
 
     /**
-     * @var \Phergie\Irc\Event\EventInterface
+     * @var \Phake_IMock
      */
     protected $event;
 
     /**
-     * @var \Phergie\Irc\Bot\React\EventQueueInterface
+     * @var \Phake_IMock
+     */
+    protected $apiResponse;
+
+    /**
+     * @var \Phake_IMock
      */
     protected $queue;
 
@@ -46,6 +51,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $this->event = Phake::mock('Phergie\Irc\Plugin\React\Command\CommandEvent');
         $this->queue = Phake::mock('Phergie\Irc\Bot\React\EventQueueInterface');
+        $this->apiResponse = Phake::mock('GuzzleHttp\Message\Response');
     }
 
     /**
@@ -113,8 +119,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchCommand()
     {
         $httpConfig = $this->doCommandTest("google", array("test", "search"));
-        $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
-        $this->doResolveTest("google", $data, $httpConfig);
+        $json = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
+        Phake::when($this->apiResponse)->getBody()->thenReturn($json);
+
+        $this->doResolveTest("google", $this->apiResponse, $httpConfig);
     }
 
     /**
@@ -123,8 +131,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchCommandNoResults()
     {
         $httpConfig = $this->doCommandTest("google", array("test", "search"));
-        $data = file_get_contents(__DIR__ . '/_data/webSearchNoResults.json');
-        $this->doResolveNoResultsTest("google", $data, $httpConfig);
+        $json = file_get_contents(__DIR__ . '/_data/webSearchNoResults.json');
+        Phake::when($this->apiResponse)->getBody()->thenReturn($json);
+
+        $this->doResolveNoResultsTest("google", $this->apiResponse, $httpConfig);
     }
 
     /**
@@ -151,8 +161,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchCountCommand()
     {
         $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
-        $data = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
-        $this->doResolveTest("googlecount", $data, $httpConfig);
+        $json = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
+        Phake::when($this->apiResponse)->getBody()->thenReturn($json);
+
+        $this->doResolveTest("googlecount", $this->apiResponse, $httpConfig);
     }
 
     /**
@@ -290,30 +302,30 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handCommand() handles resolveCallback correctly
      *
      * @param string $command
-     * @param string $data
+     * @param \GuzzleHttp\Message\Response $response
      * @param array $httpConfig
      */
-    protected function doResolveTest($command, $data, array $httpConfig)
+    protected function doResolveTest($command, $response, array $httpConfig)
     {
         $this->doPreCallbackSetup($command);
         $callback = $httpConfig['resolveCallback'];
-        $responseLines = $this->getPlugin()->getProvider($command)->getSuccessLines($this->event, $data);
-        $this->doPostCallbackTests($data, $callback, $responseLines);
+        $responseLines = $this->getPlugin()->getProvider($command)->getSuccessLines($this->event, $response->getBody());
+        $this->doPostCallbackTests($response, $callback, $responseLines);
     }
 
     /**
      * Tests handCommand() handles resolveCallback correctly
      *
      * @param string $command
-     * @param string $data
+     * @param \GuzzleHttp\Message\Response $response
      * @param array $httpConfig
      */
-    protected function doResolveNoResultsTest($command, $data, array $httpConfig)
+    protected function doResolveNoResultsTest($command, $response, array $httpConfig)
     {
         $this->doPreCallbackSetup($command);
         $callback = $httpConfig['resolveCallback'];
-        $responseLines = $this->getPlugin()->getProvider($command)->getNoResultsLines($this->event, $data);
-        $this->doPostCallbackTests($data, $callback, $responseLines);
+        $responseLines = $this->getPlugin()->getProvider($command)->getNoResultsLines($this->event, $response->getBody());
+        $this->doPostCallbackTests($response, $callback, $responseLines);
     }
 
     /**
@@ -347,12 +359,12 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     /**
      * Sets mocks in preparation for a callback test
      *
-     * @param string $data
+     * @param \GuzzleHttp\Message\Response $response
      * @param callable $callback
      * @param array $responseLines
      */
 
-    protected function doPostCallbackTests($data, $callback, $responseLines)
+    protected function doPostCallbackTests($response, $callback, $responseLines)
     {
         // Test we've had an array back and it has at least one response message
         $this->assertInternalType('array', $responseLines);
@@ -361,7 +373,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('callable', $callback);
 
         // Run the resolveCallback callback
-        $callback($data, $this->event, $this->queue);
+        $callback($response, $this->event, $this->queue);
 
         // Verify if each expected line was sent
         foreach ($responseLines as $responseLine) {

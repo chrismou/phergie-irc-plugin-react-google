@@ -15,6 +15,7 @@ use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use Phergie\Plugin\Http\Request as HttpRequest;
 use Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface;
+use GuzzleHttp\Message\Response;
 
 /**
  * Plugin class.
@@ -123,7 +124,7 @@ class Plugin extends AbstractPlugin
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      * @param \Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface $provider
-     * @return \WyriHaximus\Phergie\Plugin\Http\Request
+     * @return \Phergie\Plugin\Http\Request
      */
     protected function getApiRequest(Event $event, Queue $queue, GoogleProviderInterface $provider)
     {
@@ -131,8 +132,8 @@ class Plugin extends AbstractPlugin
 
         return new HttpRequest(array(
             'url' => $provider->getApiRequestUrl($event),
-            'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
+            'resolveCallback' => function (Response $response) use ($self, $event, $queue, $provider) {
+                $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $response->getBody()));
             },
             'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getRejectLines($event, $error));

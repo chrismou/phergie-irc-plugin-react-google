@@ -30,7 +30,9 @@
         "phake/phake": "2.0.0-beta2",
         "squizlabs/php_codesniffer": "*",
         "vectorface/dunit": "^2.1",
-        "codeclimate/php-test-reporter": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "phergie/phergie-irc-plugin-react-autojoin": "~1.1",
+        "phergie/phergie-irc-plugin-react-pong": "~1.1"
     },
     "suggest": {
         "phergie/phergie-irc-plugin-react-commandhelp": "provides interactive help for commands",
@@ -48,7 +50,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }
