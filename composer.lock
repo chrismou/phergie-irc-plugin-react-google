@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "26b8bfd363cf31098599bfdc412b20af",
-    "content-hash": "19820ca6164d6f2bfc768df0becd2a9c",
+    "hash": "4e414fbc753175733fc599a4c1d9591b",
+    "content-hash": "e6da295e6b81b9ae72d598cb017cb674",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1540,89 +1540,6 @@
                 "testing"
             ],
             "time": "2014-05-05 14:08:12"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-react-autojoin",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-autojoin.git",
-                "reference": "5b443931759c8d32439d33fa33b2033a8ec0fb96"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-autojoin/zipball/5b443931759c8d32439d33fa33b2033a8ec0fb96",
-                "reference": "5b443931759c8d32439d33fa33b2033a8ec0fb96",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "~1"
-            },
-            "require-dev": {
-                "phake/phake": "~2",
-                "phpunit/phpunit": "~4.6"
-            },
-            "suggest": {
-                "phergie/phergie-irc-plugin-react-nickserv": "Enables wait-for-nickserv autojoin functionality"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\AutoJoin\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for automatically joining IRC channels",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2015-05-27 14:30:34"
-        },
-        {
-            "name": "phergie/phergie-irc-plugin-react-pong",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phergie/phergie-irc-plugin-react-pong.git",
-                "reference": "cf526fbf615a3ceb16d73c6cd57912078b3cde29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-pong/zipball/cf526fbf615a3ceb16d73c6cd57912078b3cde29",
-                "reference": "cf526fbf615a3ceb16d73c6cd57912078b3cde29",
-                "shasum": ""
-            },
-            "require": {
-                "phergie/phergie-irc-bot-react": "~1"
-            },
-            "require-dev": {
-                "phake/phake": "2.0.0-beta2",
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phergie\\Irc\\Plugin\\React\\Pong\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "description": "Phergie plugin for responding to server ping events",
-            "keywords": [
-                "bot",
-                "irc",
-                "plugin",
-                "react"
-            ],
-            "time": "2014-12-24 01:31:46"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
