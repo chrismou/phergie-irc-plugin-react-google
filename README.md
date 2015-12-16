@@ -69,6 +69,11 @@ php composer.phar install
 ./vendor/bin/phpunit
 ```
 
+If you use docker, you can also run the test suite against all supported PHP versions:
+```
+./vendor/bin/dunit
+```
+
 ## License
 
 Released under the BSD License. See [LICENSE](LICENSE).
