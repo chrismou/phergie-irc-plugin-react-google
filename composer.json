@@ -21,8 +21,8 @@
     "require": {
         "php": ">=5.5.0",
         "phergie/phergie-irc-bot-react": "<4.0",
-        "phergie/phergie-irc-plugin-react-command": "~1.0",
-        "phergie/phergie-irc-plugin-http": "~3.0"
+        "phergie/phergie-irc-plugin-react-command": "~2.0",
+        "phergie/phergie-irc-plugin-http": "~4.0"
 
     },
     "require-dev": {

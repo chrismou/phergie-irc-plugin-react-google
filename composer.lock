@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5be3efd2a2a23a10562683f6cd15584b",
-    "content-hash": "db29c9e1f58b1090c4d573b4b7de5430",
+    "hash": "143c7f836d02f0cb82abc9c1c1859cf0",
+    "content-hash": "951b28de07a81070de3e4c64c1a487f5",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -349,35 +349,28 @@
         },
         {
             "name": "phergie/phergie-irc-bot-react",
-            "version": "1.3.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-bot-react.git",
-                "reference": "ce94f71df696c7d379fcdd6c7b60aef73b8d8a78"
+                "reference": "d8587c51144dffe45dc925d87740a7f1e0ea23d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-bot-react/zipball/ce94f71df696c7d379fcdd6c7b60aef73b8d8a78",
-                "reference": "ce94f71df696c7d379fcdd6c7b60aef73b8d8a78",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-bot-react/zipball/d8587c51144dffe45dc925d87740a7f1e0ea23d4",
+                "reference": "d8587c51144dffe45dc925d87740a7f1e0ea23d4",
                 "shasum": ""
             },
             "require": {
                 "evenement/evenement": "~2.0",
                 "monolog/monolog": "~1.6",
-                "phergie/phergie-irc-client-react": "~2.2",
+                "phergie/phergie-irc-client-react": "~3",
                 "phergie/phergie-irc-connection": "~2.0",
                 "phergie/phergie-irc-event": "~1.0",
-                "php": ">=5.4.2"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "codeclimate/php-test-reporter": "~0.1",
-                "phake/phake": "~2.0",
-                "phpunit/phpunit": "~4.6",
-                "satooshi/php-coveralls": "0.6.1",
-                "symfony/config": "~2.0",
-                "symfony/console": "~2.0",
-                "symfony/filesystem": "~2.0",
-                "symfony/stopwatch": "~2.0"
+                "phergie/phergie-irc-bot-react-development": "~1.0"
             },
             "bin": [
                 "bin/phergie"
@@ -398,20 +391,20 @@
                 "irc",
                 "react"
             ],
-            "time": "2015-07-16 17:22:01"
+            "time": "2015-12-21 21:17:58"
         },
         {
             "name": "phergie/phergie-irc-client-react",
-            "version": "2.3.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-client-react.git",
-                "reference": "5d0cf542ca9391e515eddef3554815f80bda60ed"
+                "reference": "55efba19c7a48764d4b997d5e9d473e0f75db232"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-client-react/zipball/5d0cf542ca9391e515eddef3554815f80bda60ed",
-                "reference": "5d0cf542ca9391e515eddef3554815f80bda60ed",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-client-react/zipball/55efba19c7a48764d4b997d5e9d473e0f75db232",
+                "reference": "55efba19c7a48764d4b997d5e9d473e0f75db232",
                 "shasum": ""
             },
             "require": {
@@ -419,7 +412,7 @@
                 "phergie/phergie-irc-connection": "~2.0",
                 "phergie/phergie-irc-generator": "~1.5",
                 "phergie/phergie-irc-parser": "~2.0",
-                "php": ">=5.4.2",
+                "php": ">=5.5",
                 "psr/log": "~1.0",
                 "react/dns": "~0.4.0",
                 "react/event-loop": "~0.4.0",
@@ -427,15 +420,11 @@
                 "react/socket-client": "~0.4.2",
                 "react/stream": "~0.4.2"
             },
+            "conflict": {
+                "phergie/phergie-irc-plugin-react-pong": "*"
+            },
             "require-dev": {
-                "codeclimate/php-test-reporter": "~0.1",
-                "phake/phake": "~2.1",
-                "phpunit/phpunit": "~4.6",
-                "satooshi/php-coveralls": "0.6.1",
-                "symfony/config": "~2.0",
-                "symfony/console": "~2.0",
-                "symfony/filesystem": "~2.0",
-                "symfony/stopwatch": "~2.0"
+                "phergie/phergie-irc-bot-react-development": "~1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -453,7 +442,7 @@
                 "irc",
                 "react"
             ],
-            "time": "2015-07-16 17:05:02"
+            "time": "2015-12-14 23:56:41"
         },
         {
             "name": "phergie/phergie-irc-connection",
@@ -609,26 +598,26 @@
         },
         {
             "name": "phergie/phergie-irc-plugin-dns",
-            "version": "3.0.2",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/plugin-dns.git",
-                "reference": "b0bcb118da54c8a8d166c3453263fff2dd4fc4ec"
+                "reference": "e24af66296819c2c02804a1cbe0fbcef63cd9e15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/plugin-dns/zipball/b0bcb118da54c8a8d166c3453263fff2dd4fc4ec",
-                "reference": "b0bcb118da54c8a8d166c3453263fff2dd4fc4ec",
+                "url": "https://api.github.com/repos/phergie/plugin-dns/zipball/e24af66296819c2c02804a1cbe0fbcef63cd9e15",
+                "reference": "e24af66296819c2c02804a1cbe0fbcef63cd9e15",
                 "shasum": ""
             },
             "require": {
-                "phergie/phergie-irc-bot-react": "^1.0",
-                "php": ">=5.4.0",
+                "phergie/phergie-irc-bot-react": "^2.0",
+                "php": ">=5.5",
                 "react/dns": "^0.4.1"
             },
             "require-dev": {
                 "phergie/phergie-irc-bot-react-development": "^1.0.2|^1.1",
-                "phergie/phergie-irc-plugin-react-command": "^1.1"
+                "phergie/phergie-irc-plugin-react-command": "^2"
             },
             "suggest": {
                 "phergie/phergie-irc-plugin-react-command": "Required if you want to make use of the command support"
@@ -658,30 +647,30 @@
                 "plugin",
                 "react"
             ],
-            "time": "2015-11-14 06:34:05"
+            "time": "2015-12-28 23:49:13"
         },
         {
             "name": "phergie/phergie-irc-plugin-http",
-            "version": "3.0.1",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/plugin-http.git",
-                "reference": "57736ea5a45cbaf304432d9217685bbbad0f08c2"
+                "reference": "6f44190806e0817c0fd1dfb06bf221903dddf7cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/plugin-http/zipball/57736ea5a45cbaf304432d9217685bbbad0f08c2",
-                "reference": "57736ea5a45cbaf304432d9217685bbbad0f08c2",
+                "url": "https://api.github.com/repos/phergie/plugin-http/zipball/6f44190806e0817c0fd1dfb06bf221903dddf7cc",
+                "reference": "6f44190806e0817c0fd1dfb06bf221903dddf7cc",
                 "shasum": ""
             },
             "require": {
-                "phergie/phergie-irc-bot-react": "~1.0",
-                "phergie/phergie-irc-plugin-dns": "^3.0",
-                "php": ">=5.4.0",
+                "phergie/phergie-irc-bot-react": "~2.0",
+                "phergie/phergie-irc-plugin-dns": "^4.0",
+                "php": "^5.5||^7.0",
                 "wyrihaximus/react-guzzle-ring": "^1.0"
             },
             "require-dev": {
-                "phergie/phergie-irc-bot-react-development": "^1.0.2|^1.1"
+                "phergie/phergie-irc-bot-react-development": "^1.0.2"
             },
             "type": "library",
             "autoload": {
@@ -708,24 +697,24 @@
                 "plugin",
                 "react"
             ],
-            "time": "2015-11-15 10:55:33"
+            "time": "2015-12-29 12:41:31"
         },
         {
             "name": "phergie/phergie-irc-plugin-react-command",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phergie/phergie-irc-plugin-react-command.git",
-                "reference": "c6f25df9993ab4488086e67d476a49334d5c9dbd"
+                "reference": "c4310f7856dbee97b91fe62ec3bf7e1b11a2db95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-command/zipball/c6f25df9993ab4488086e67d476a49334d5c9dbd",
-                "reference": "c6f25df9993ab4488086e67d476a49334d5c9dbd",
+                "url": "https://api.github.com/repos/phergie/phergie-irc-plugin-react-command/zipball/c4310f7856dbee97b91fe62ec3bf7e1b11a2db95",
+                "reference": "c4310f7856dbee97b91fe62ec3bf7e1b11a2db95",
                 "shasum": ""
             },
             "require": {
-                "phergie/phergie-irc-bot-react": "1.*"
+                "phergie/phergie-irc-bot-react": "~2"
             },
             "require-dev": {
                 "phake/phake": "2.0.0-beta2",
@@ -748,7 +737,7 @@
                 "plugin",
                 "react"
             ],
-            "time": "2014-12-15 02:26:15"
+            "time": "2015-12-21 22:30:19"
         },
         {
             "name": "psr/http-message",
@@ -1284,12 +1273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeclimate/php-test-reporter.git",
-                "reference": "892163d67e3bd9c190d43655acb69657da765c7b"
+                "reference": "02790d733f9eb43d0a5981962c41846092fb387f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeclimate/php-test-reporter/zipball/892163d67e3bd9c190d43655acb69657da765c7b",
-                "reference": "892163d67e3bd9c190d43655acb69657da765c7b",
+                "url": "https://api.github.com/repos/codeclimate/php-test-reporter/zipball/02790d733f9eb43d0a5981962c41846092fb387f",
+                "reference": "02790d733f9eb43d0a5981962c41846092fb387f",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1323,7 @@
                 "codeclimate",
                 "coverage"
             ],
-            "time": "2015-10-15 14:41:10"
+            "time": "2015-12-17 00:52:54"
         },
         {
             "name": "doctrine/instantiator",
@@ -2536,16 +2525,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "40bae8658dbbb500ebc19aa9fde22dc4295fc290"
+                "reference": "58680a6516a457a6c65044fe33586c4a81fdff01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/40bae8658dbbb500ebc19aa9fde22dc4295fc290",
-                "reference": "40bae8658dbbb500ebc19aa9fde22dc4295fc290",
+                "url": "https://api.github.com/repos/symfony/config/zipball/58680a6516a457a6c65044fe33586c4a81fdff01",
+                "reference": "58680a6516a457a6c65044fe33586c4a81fdff01",
                 "shasum": ""
             },
             "require": {
@@ -2582,20 +2571,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-02 20:34:04"
+            "time": "2015-12-26 13:39:53"
         },
         {
             "name": "symfony/console",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "175871ca8d1ef16ff8d8cac395a1c73afa8d0e63"
+                "reference": "ebcdc507829df915f4ca23067bd59ee4ef61f6c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/175871ca8d1ef16ff8d8cac395a1c73afa8d0e63",
-                "reference": "175871ca8d1ef16ff8d8cac395a1c73afa8d0e63",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ebcdc507829df915f4ca23067bd59ee4ef61f6c3",
+                "reference": "ebcdc507829df915f4ca23067bd59ee4ef61f6c3",
                 "shasum": ""
             },
             "require": {
@@ -2642,11 +2631,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-30 12:36:17"
+            "time": "2015-12-22 10:39:06"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2706,16 +2695,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "692d98d813e4ef314b9c22775c86ddbeb0f44884"
+                "reference": "c2e59d11dccd135dc8f00ee97f34fe1de842e70c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/692d98d813e4ef314b9c22775c86ddbeb0f44884",
-                "reference": "692d98d813e4ef314b9c22775c86ddbeb0f44884",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/c2e59d11dccd135dc8f00ee97f34fe1de842e70c",
+                "reference": "c2e59d11dccd135dc8f00ee97f34fe1de842e70c",
                 "shasum": ""
             },
             "require": {
@@ -2751,24 +2740,27 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-23 10:41:47"
+            "time": "2015-12-22 10:39:06"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497"
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/0b6a8940385311a24e060ec1fe35680e17c74497",
-                "reference": "0b6a8940385311a24e060ec1fe35680e17c74497",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/49ff736bd5d41f45240cec77b44967d76e0c3d25",
+                "reference": "49ff736bd5d41f45240cec77b44967d76e0c3d25",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
             },
             "type": "library",
             "extra": {
@@ -2807,11 +2799,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2015-11-04 20:28:58"
+            "time": "2015-11-20 09:19:13"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -2860,16 +2852,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002"
+                "reference": "3df409958a646dad2bc5046c3fb671ee24a1a691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002",
-                "reference": "177a015cb0e19ff4a49e0e2e2c5fc1c1bee07002",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/3df409958a646dad2bc5046c3fb671ee24a1a691",
+                "reference": "3df409958a646dad2bc5046c3fb671ee24a1a691",
                 "shasum": ""
             },
             "require": {
@@ -2905,7 +2897,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-30 12:36:17"
+            "time": "2015-12-26 13:39:53"
         },
         {
             "name": "vectorface/dunit",
