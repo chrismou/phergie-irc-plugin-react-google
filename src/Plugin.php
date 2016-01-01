@@ -4,7 +4,7 @@
  * (https://github.com/chrismou/phergie-irc-plugin-react-google)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-google for the canonical source repository
- * @copyright Copyright (c) 2015 Chris Chrisostomou (https://mou.me)
+ * @copyright Copyright (c) 2016 Chris Chrisostomou (https://mou.me)
  * @license http://phergie.org/license New BSD License
  * @package Chrismou\Phergie\Plugin\Google
  */
