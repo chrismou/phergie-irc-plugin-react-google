@@ -33,7 +33,7 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
         $json = json_decode($apiResponse);
         $json = $json->responseData;
 
-        $messages = array();
+        $messages = [];
 
         $messages[] = sprintf(
             "%s results [ %s ]",
@@ -51,10 +51,10 @@ class GoogleSearchCount extends GoogleSearch implements GoogleProviderInterface
      */
     public function getHelpLines()
     {
-        return array(
+        return [
             'Usage: googlecount [search query]',
             '[search query] - the word or phrase you want to search for',
             'Instructs the bot to query Google and respond with the estimated result count'
-        );
+        ];
     }
 }

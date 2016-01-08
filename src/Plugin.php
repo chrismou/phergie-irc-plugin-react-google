@@ -31,10 +31,10 @@ class Plugin extends AbstractPlugin
      *
      * @var array
      */
-    protected $providers = array(
+    protected $providers = [
         "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
         "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
-    );
+    ];
 
 
     /**
@@ -46,7 +46,7 @@ class Plugin extends AbstractPlugin
      *
      * @param array $config
      */
-    public function __construct(array $config = array())
+    public function __construct(array $config = [])
     {
         if (isset($config['providers']) && is_array($config['providers'])) {
             $this->providers = $config['providers'];
@@ -61,7 +61,7 @@ class Plugin extends AbstractPlugin
      */
     public function getSubscribedEvents()
     {
-        $events = array();
+        $events = [];
         foreach ($this->providers as $command => $provider) {
             $events['command.' . $command] = 'handleCommand';
             $events['command.' . $command . '.help'] = 'handleCommandHelp';
@@ -82,7 +82,7 @@ class Plugin extends AbstractPlugin
         $provider = $this->getProvider($event->getCustomCommand());
         if ($provider && $provider->validateParams($event->getCustomParams())) {
             $request = $this->getApiRequest($event, $queue, $provider);
-            $this->getEventEmitter()->emit('http.request', array($request));
+            $this->getEventEmitter()->emit('http.request', [$request]);
         } else {
             $this->handleCommandhelp($event, $queue);
         }
@@ -134,7 +134,7 @@ class Plugin extends AbstractPlugin
     {
         $self = $this;
 
-        return new HttpRequest(array(
+        return new HttpRequest([
             'url' => $provider->getApiRequestUrl($event),
             'resolveCallback' => function (Response $response) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $response->getBody()));
@@ -142,7 +142,7 @@ class Plugin extends AbstractPlugin
             'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getRejectLines($event, $error));
             }
-        ));
+        ]);
     }
 
 

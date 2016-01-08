@@ -47,10 +47,10 @@ class GoogleSearch implements GoogleProviderInterface
         $params = $event->getCustomParams();
         $query = trim(implode(" ", $params));
 
-        $querystringParams = array(
+        $querystringParams = [
             'v' => '1.0',
             'q' => $query
-        );
+        ];
 
         return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
     }
@@ -69,7 +69,7 @@ class GoogleSearch implements GoogleProviderInterface
         $json = $json->responseData;
 
         if (isset($json->cursor->estimatedResultCount) && $json->cursor->estimatedResultCount > 0) {
-            $messages = array();
+            $messages = [];
             $messages[] = sprintf(
                 "%s [ %s ]",
                 $json->results[0]->titleNoFormatting,
@@ -93,7 +93,7 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getNoResultsLines(Event $event, $apiResponse)
     {
-        return array('No results for this query');
+        return ['No results for this query'];
     }
 
     /**
@@ -106,7 +106,7 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getRejectLines(Event $event, $apiError)
     {
-        return array('something went wrong... ಠ_ಠ');
+        return ['something went wrong... ಠ_ಠ'];
     }
 
     /**
@@ -116,10 +116,10 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getHelpLines()
     {
-        return array(
+        return [
             'Usage: google [search query]',
             '[search query] - the word or phrase you want to search for',
             'Instructs the bot to query Google and respond with the top result'
-        );
+        ];
     }
 }

@@ -85,11 +85,11 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetCustomProviders()
     {
-        $testConfig = array(
+        $testConfig = [
             "test1" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
             "test2" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
-        );
-        $plugin = new Plugin(array("providers" => $testConfig));
+        ];
+        $plugin = new Plugin(["providers" => $testConfig]);
 
         foreach ($testConfig as $command => $provider) {
             $this->assertInstanceOf($provider, $plugin->getProvider($command));
@@ -101,11 +101,11 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetCustomProvidersWithNonExistentClass()
     {
-        $testConfig = array(
+        $testConfig = [
             "test1" => "\\fake\\path\\to\\class",
             "test2" => "\\another\\fake\\class"
-        );
-        $plugin = new Plugin(array("providers" => $testConfig));
+        ];
+        $plugin = new Plugin(["providers" => $testConfig]);
 
         foreach ($testConfig as $command => $provider) {
             $this->assertEquals($plugin->getProvider($command), false);
@@ -118,7 +118,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCommand()
     {
-        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $httpConfig = $this->doCommandTest("google", ["test", "search"]);
         $json = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
         Phake::when($this->apiResponse)->getBody()->thenReturn($json);
 
@@ -130,7 +130,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCommandNoResults()
     {
-        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $httpConfig = $this->doCommandTest("google", ["test", "search"]);
         $json = file_get_contents(__DIR__ . '/_data/webSearchNoResults.json');
         Phake::when($this->apiResponse)->getBody()->thenReturn($json);
 
@@ -142,9 +142,9 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCommandFailure()
     {
-        $httpConfig = $this->doCommandTest("google", array("test", "search"));
+        $httpConfig = $this->doCommandTest("google", ["test", "search"]);
         $this->doRejectTest("google", $httpConfig);
-        $this->doCommandInvalidParamsTest(array());
+        $this->doCommandInvalidParamsTest([]);
     }
 
     /**
@@ -152,7 +152,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchHelpCommand()
     {
-        $this->doHelpCommandTest("help", array("google"));
+        $this->doHelpCommandTest("help", ["google"]);
     }
 
     /**
@@ -160,7 +160,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCountCommand()
     {
-        $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
+        $httpConfig = $this->doCommandTest("googlecount", ["test", "search"]);
         $json = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
         Phake::when($this->apiResponse)->getBody()->thenReturn($json);
 
@@ -172,9 +172,9 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCountCommandFailure()
     {
-        $httpConfig = $this->doCommandTest("googlecount", array("test", "search"));
+        $httpConfig = $this->doCommandTest("googlecount", ["test", "search"]);
         $this->doRejectTest("googlecount", $httpConfig);
-        $this->doCommandInvalidParamsTest(array());
+        $this->doCommandInvalidParamsTest([]);
     }
 
     /**
@@ -182,7 +182,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchCountHelpCommand()
     {
-        $this->doHelpCommandTest("help", array("googlecount"));
+        $this->doHelpCommandTest("help", ["googlecount"]);
     }
 
     /**
@@ -242,7 +242,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
             $helpLines = $provider->getHelpLines();
             $this->assertInternalType('array', $helpLines);
 
-            foreach ((array)$helpLines as $responseLine) {
+            foreach ((array) $helpLines as $responseLine) {
                 Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
             }
         }
@@ -252,7 +252,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handleCommand() is doing what it's supposed to
      * @return array $httpConfig
      */
-    protected function doCommandInvalidParamsTest(array $params = array())
+    protected function doCommandInvalidParamsTest(array $params = [])
     {
         // GRab a fresh queue instance to test on
         $queue = $this->getMockEventQueue();
@@ -264,7 +264,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $helpLines = $plugin->getProvider($this->event->getCustomCommand())->getHelpLines();
         $this->assertInternalType('array', $helpLines);
 
-        foreach ((array)$helpLines as $responseLine) {
+        foreach ((array) $helpLines as $responseLine) {
             Phake::verify($queue)->ircPrivmsg('#channel', $responseLine);
         }
     }
@@ -388,7 +388,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      *
      * @return \Chrismou\Phergie\Plugin\Google\Plugin
      */
-    protected function getPlugin(array $config = array())
+    protected function getPlugin(array $config = [])
     {
         $plugin = new Plugin($config);
         $plugin->setEventEmitter(Phake::mock('\Evenement\EventEmitterInterface'));
