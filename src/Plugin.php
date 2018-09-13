@@ -32,7 +32,7 @@ class Plugin extends AbstractPlugin
      * @var array
      */
     protected $providers = [
-        "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
+        "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleCustomSearch",
         "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
     ];
 
