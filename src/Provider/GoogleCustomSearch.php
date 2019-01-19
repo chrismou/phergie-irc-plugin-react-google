@@ -70,7 +70,7 @@ class GoogleCustomSearch implements GoogleProviderInterface
             'v' => isset($this->config['version']) ? $this->config['version'] : '1.0',
             'q' => $query,
             'cx' => $this->config['google_custom_search_id'],
-            'key' => $this->config['google_custom_search_id'],
+            'key' => $this->config['google_custom_search_key'],
             'num' => isset($this->config['number_of_results']) ? $this->config['number_of_results'] : 3,
         ];
 
@@ -88,7 +88,7 @@ class GoogleCustomSearch implements GoogleProviderInterface
     public function getSuccessLines(Event $event, $apiResponse)
     {
         $json = json_decode($apiResponse);
-        return (count($json->items ?? []) > 0) ? $this->getResultLines($json->items) : $this->getNoResultsLines($event, $apiResponse);
+        return (count(isset($json->items) ? $json->items : []) > 0) ? $this->getResultLines($json->items) : $this->getNoResultsLines($event, $apiResponse);
     }
 
     public function getResultLines($items)

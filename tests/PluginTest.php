@@ -94,10 +94,9 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSetCustomProviders()
     {
         $testConfig = [
-            "test1" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-            "test2" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+            "test1" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleCustomSearch",
         ];
-        $plugin = new Plugin(["providers" => $testConfig]);
+        $plugin = new Plugin(["providers" => $testConfig, 'config' => $this->config]);
 
         foreach ($testConfig as $command => $provider) {
             $this->assertInstanceOf($provider, $plugin->getProvider($command));
@@ -161,36 +160,6 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     public function testSearchHelpCommand()
     {
         $this->doHelpCommandTest("help", ["google"]);
-    }
-
-    /**
-     * Tests the default "googlecount" command
-     */
-    public function testSearchCountCommand()
-    {
-        $httpConfig = $this->doCommandTest("googlecount", ["test", "search"]);
-        $json = file_get_contents(__DIR__ . '/_data/webSearchResults.json');
-        Phake::when($this->apiResponse)->getBody()->thenReturn($json);
-
-        $this->doResolveTest("googlecount", $this->apiResponse, $httpConfig);
-    }
-
-    /**
-     * Tests for the default "googlecount" command with a connection failure
-     */
-    public function testSearchCountCommandFailure()
-    {
-        $httpConfig = $this->doCommandTest("googlecount", ["test", "search"]);
-        $this->doRejectTest("googlecount", $httpConfig);
-        $this->doCommandInvalidParamsTest([]);
-    }
-
-    /**
-     * Tests for the default "google" help command
-     */
-    public function testSearchCountHelpCommand()
-    {
-        $this->doHelpCommandTest("help", ["googlecount"]);
     }
 
     /**

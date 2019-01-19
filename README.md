@@ -9,8 +9,8 @@
 
 ## About
 
-This plugin provides a simple method for performing Google lookups from within IRC.  By default, the plugin accepts one of 2 commands (google and googlecount) and outputs either the top result
-for your search query, or the estimated result count.
+This plugin provides a simple method for performing Google lookups from within IRC.  By default, the plugin accepts one command (google) and outputs either the top result
+for your search query.
 
 I'd also recommend installing the [CommandAlias plugin](https://github.com/phergie/phergie-irc-plugin-react-commandalias), which can be used to alias the commands (ie, to use "g" instead of "google").
 
@@ -26,6 +26,15 @@ See Phergie documentation for more information on
 [installing and enabling plugins](https://github.com/phergie/phergie-irc-bot-react/wiki/Usage#plugins).
 
 ## Configuration
+This plugin requires a google custom search account. These are free up to 10,000 requests per day. After signing up and creating a basic custom search,
+you must provide API credentials to the plugin.
+[google custom search engine](https://cse.google.com/)
+
+### Advanced custom search configuartion options
+In addition to the custom search credentials, you may also pass two more keys to in the config array.
+'version' will change the custom search engine api version string.
+'number_of_results' will change the amount of results requested.
+If these are not provided, defaults will be used.
 
 This plugin requires the [Command plugin](https://github.com/phergie/phergie-irc-plugin-react-command) to recognise commands, and the
 [http plugin](https://github.com/phergie/plugin-http) to query Google for your search results.
@@ -37,7 +46,14 @@ for more information.  Otherwise, add the following references to your config fi
 return array(
     // ...
     'plugins' => array(
-        new \Chrismou\Phergie\Plugin\Google\Plugin,
+        new \Chrismou\Phergie\Plugin\Google\Plugin([
+            'config' => [
+                'google_custom_search_id' => 'CUSTOMSEARCHID',   // required
+                'google_custom_search_key' => 'CUSTOMSEARCHKEY', // required
+                'number_of_results' => 3,                        // optional, example is the default.
+                'version' => '1.0',                        // optional, example is the default.
+            ]
+        ]),
         new \Phergie\Irc\Plugin\React\Command\Plugin,  // dependency
         new \Phergie\Plugin\Dns\Plugin,                // dependency
         new \Phergie\Plugin\Http\Plugin	               // dependency
@@ -45,7 +61,7 @@ return array(
 )
 ```
 
-By default, the plugin will respond to "google" for Google searches, and "googlecount" for estimated results.
+By default, the plugin will respond to "google" for Google searches.
 counts.
 
 Or, you can pass references to the providers you want to use as a config array, where the array key is the command you want 
