@@ -46,12 +46,20 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected $logger;
 
+    /**
+     * @var array
+     */
+    protected $config = [];
 
     protected function setUp()
     {
         $this->event = Phake::mock('Phergie\Irc\Plugin\React\Command\CommandEvent');
         $this->queue = Phake::mock('Phergie\Irc\Bot\React\EventQueueInterface');
         $this->apiResponse = Phake::mock('GuzzleHttp\Message\Response');
+        $this->config = [
+            'google_custom_search_id' => '1',
+            'google_custom_search_key' => '1',
+        ];
     }
 
     /**
@@ -76,7 +84,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue($providerExists, "Class " . $class . " does not exist");
 
             // Check it correct implements GoogleProviderInterface
-            if ($providerExists) $this->assertInstanceOf('Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface', new $class);
+            if ($providerExists) $this->assertInstanceOf('Chrismou\Phergie\Plugin\Google\Provider\GoogleProviderInterface', new $class($this->config));
         }
     }
 
@@ -383,14 +391,12 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Returns a configured instance of the class under test.
-     *
-     * @param array $config
-     *
+     *     *
      * @return \Chrismou\Phergie\Plugin\Google\Plugin
      */
-    protected function getPlugin(array $config = [])
+    protected function getPlugin()
     {
-        $plugin = new Plugin($config);
+        $plugin = new Plugin(['config' => $this->config]);
         $plugin->setEventEmitter(Phake::mock('\Evenement\EventEmitterInterface'));
         $plugin->setLogger(Phake::mock('\Psr\Log\LoggerInterface'));
 
