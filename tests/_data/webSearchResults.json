@@ -1,1 +1,144 @@
-{"responseData": {"results":[{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://en.wikipedia.org/wiki/Wikipedia:Search_engine_test","url":"http://en.wikipedia.org/wiki/Wikipedia:Search_engine_test","visibleUrl":"en.wikipedia.org","cacheUrl":"http://www.google.com/search?q\u003dcache:g6KEStELS_MJ:en.wikipedia.org","title":"Wikipedia:\u003cb\u003eSearch\u003c/b\u003e engine \u003cb\u003etest\u003c/b\u003e - Wikipedia, the free encyclopedia","titleNoFormatting":"Wikipedia:Search engine test - Wikipedia, the free encyclopedia","content":"A \u003cb\u003esearch\u003c/b\u003e engine lists web pages on the Internet. This facilitates research by \noffering an immediate variety of applicable options. Possibly useful items on the ..."},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://sat.collegeboard.org/register/test-center-code-search","url":"http://sat.collegeboard.org/register/test-center-code-search","visibleUrl":"sat.collegeboard.org","cacheUrl":"http://www.google.com/search?q\u003dcache:rPQrDf8ZSjoJ:sat.collegeboard.org","title":"SAT \u003cb\u003eTest\u003c/b\u003e Center \u003cb\u003eSearch\u003c/b\u003e – College Board - SATs - The College Board","titleNoFormatting":"SAT Test Center Search – College Board - SATs - The College Board","content":"Wondering where you can take the SAT? Use the \u003cb\u003esearch\u003c/b\u003e tool below to find out \nwhere the SAT is being administered near you for your chosen \u003cb\u003etest\u003c/b\u003e date."},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://www.ssat.org/test-center-search","url":"http://www.ssat.org/test-center-search","visibleUrl":"www.ssat.org","cacheUrl":"http://www.google.com/search?q\u003dcache:O4x0M35sX_4J:www.ssat.org","title":"\u003cb\u003eTEST\u003c/b\u003e CENTER \u003cb\u003eSEARCH\u003c/b\u003e - SSAT","titleNoFormatting":"TEST CENTER SEARCH - SSAT","content":"\u200b\u200b\u200b\u200bUse this page to find a \u003cb\u003etest\u003c/b\u003e center offering a \u003cb\u003etest\u003c/b\u003e of the type you require on \na date that suits you. Just use the filtering option below.\u200b ..."},{"GsearchResultClass":"GwebSearch","unescapedUrl":"http://searchengineland.com/google-testing-search-results-without-urls-158127","url":"http://searchengineland.com/google-testing-search-results-without-urls-158127","visibleUrl":"searchengineland.com","cacheUrl":"http://www.google.com/search?q\u003dcache:1-UkUD159PIJ:searchengineland.com","title":"Google \u003cb\u003eTesting Search\u003c/b\u003e Results Without URLs - Search Engine Land","titleNoFormatting":"Google Testing Search Results Without URLs - Search Engine Land","content":"May 3, 2013 \u003cb\u003e...\u003c/b\u003e Google is \u003cb\u003etesting\u003c/b\u003e yet another user interface change - this time by not showing the \nURL of the \u003cb\u003esearch\u003c/b\u003e results on the page. @tecnonetblog ..."}],"cursor":{"resultCount":"243,000,000","pages":[{"start":"0","label":1},{"start":"4","label":2},{"start":"8","label":3},{"start":"12","label":4},{"start":"16","label":5},{"start":"20","label":6},{"start":"24","label":7},{"start":"28","label":8}],"estimatedResultCount":"243000000","currentPageIndex":0,"moreResultsUrl":"http://www.google.com/search?oe\u003dutf8\u0026ie\u003dutf8\u0026source\u003duds\u0026start\u003d0\u0026hl\u003den\u0026q\u003dtest+search","searchResultTime":"0.22"}}, "responseDetails": null, "responseStatus": 200}
+{
+    "kind": "customsearch#search",
+    "url": {
+        "type": "application/json",
+        "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+    },
+    "queries": {
+        "request": [
+            {
+                "title": "Google Custom Search - test",
+                "totalResults": "3050000000",
+                "searchTerms": "test",
+                "count": 3,
+                "startIndex": 1,
+                "inputEncoding": "utf8",
+                "outputEncoding": "utf8",
+                "safe": "off",
+                "cx": "xxxxx"
+            }
+        ],
+        "nextPage": [
+            {
+                "title": "Google Custom Search - test",
+                "totalResults": "3050000000",
+                "searchTerms": "test",
+                "count": 3,
+                "startIndex": 4,
+                "inputEncoding": "utf8",
+                "outputEncoding": "utf8",
+                "safe": "off",
+                "cx": "xxxxx"
+            }
+        ]
+    },
+    "context": {
+        "title": "xxx"
+    },
+    "searchInformation": {
+        "searchTime": 0.397545,
+        "formattedSearchTime": "0.40",
+        "totalResults": "3050000000",
+        "formattedTotalResults": "3,050,000,000"
+    },
+    "items": [
+        {
+            "kind": "customsearch#result",
+            "title": "Speedtest by Ookla - The Global Broadband Speed Test",
+            "htmlTitle": "Speedtest by Ookla - The Global Broadband Speed \u003cb\u003eTest\u003c/b\u003e",
+            "link": "http://www.speedtest.net/",
+            "displayLink": "www.speedtest.net",
+            "snippet": "Test your Internet connection bandwidth to locations around the world with this \ninteractive broadband speed test from Ookla.",
+            "htmlSnippet": "\u003cb\u003eTest\u003c/b\u003e your Internet connection bandwidth to locations around the world with this \u003cbr\u003e\ninteractive broadband speed \u003cb\u003etest\u003c/b\u003e from Ookla.",
+            "cacheId": "xxx",
+            "formattedUrl": "www.speedtest.net/",
+            "htmlFormattedUrl": "www.speed\u003cb\u003etest\u003c/b\u003e.net/",
+            "pagemap": {
+                "cse_thumbnail": [
+                    {
+                        "width": "310",
+                        "height": "162",
+                        "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:xxx"
+                    }
+                ],
+                "metatags": [
+                    {
+                        "fb:app_id": "581657151866321",
+                        "og:type": "website",
+                        "og:title": "Speedtest by Ookla - The Global Broadband Speed Test",
+                        "og:description": "Test your Internet connection bandwidth to locations around the world with this interactive broadband speed test from Ookla",
+                        "og:site_name": "Speedtest.net",
+                        "og:url": "http://www.speedtest.net/",
+                        "og:image": "//b.cdnst.net/images/share-logo.png",
+                        "og:image:type": "image/png",
+                        "og:image:width": "382",
+                        "og:image:height": "200",
+                        "twitter:card": "app",
+                        "twitter:site": "@speedtest",
+                        "twitter:title": "Speedtest by Ookla - The Global Broadband Speed Test",
+                        "twitter:description": "Test your Internet connection bandwidth to locations around the world with this interactive broadband speed test from Ookla",
+                        "twitter:image": "//b.cdnst.net/images/share-logo.png",
+                        "twitter:app:id:iphone": "300704847",
+                        "twitter:app:id:ipad": "300704847",
+                        "twitter:app:id:googleplay": "org.zwanoo.android.speedtest"
+                    }
+                ],
+                "cse_image": [
+                    {
+                        "src": "http://b.cdnst.net/images/share-logo.png"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "customsearch#result",
+            "title": "Test - Wikipedia",
+            "htmlTitle": "\u003cb\u003eTest\u003c/b\u003e - Wikipedia",
+            "link": "https://en.wikipedia.org/wiki/Test",
+            "displayLink": "en.wikipedia.org",
+            "snippet": "Test(s) or TEST may refer to: Test (assessment), an assessment intended to \nmeasure the respondents' knowledge or other abilities. List of tests ...",
+            "htmlSnippet": "\u003cb\u003eTest\u003c/b\u003e(s) or \u003cb\u003eTEST\u003c/b\u003e may refer to: \u003cb\u003eTest\u003c/b\u003e (assessment), an assessment intended to \u003cbr\u003e\nmeasure the respondents&#39; knowledge or other abilities. List of \u003cb\u003etests\u003c/b\u003e&nbsp;...",
+            "cacheId": "xxxxx",
+            "formattedUrl": "https://en.wikipedia.org/wiki/Test",
+            "htmlFormattedUrl": "https://en.wikipedia.org/wiki/\u003cb\u003eTest\u003c/b\u003e",
+            "pagemap": {
+                "metatags": [
+                    {
+                        "referrer": "origin"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "customsearch#result",
+            "title": "Find online tests, practice test, and test creation software | Test.com",
+            "htmlTitle": "Find online \u003cb\u003etests\u003c/b\u003e, practice \u003cb\u003etest\u003c/b\u003e, and \u003cb\u003etest\u003c/b\u003e creation software | \u003cb\u003eTest\u003c/b\u003e.com",
+            "link": "https://www.test.com/",
+            "displayLink": "www.test.com",
+            "snippet": "Online tests and testing for certification, practice tests, test making tools, medical \ntesting and more.",
+            "htmlSnippet": "Online \u003cb\u003etests\u003c/b\u003e and \u003cb\u003etesting\u003c/b\u003e for certification, practice \u003cb\u003etests\u003c/b\u003e, \u003cb\u003etest\u003c/b\u003e making tools, medical \u003cbr\u003e\n\u003cb\u003etesting\u003c/b\u003e and more.",
+            "cacheId": "xxxx",
+            "formattedUrl": "https://www.test.com/",
+            "htmlFormattedUrl": "https://www.\u003cb\u003etest\u003c/b\u003e.com/",
+            "pagemap": {
+                "cse_thumbnail": [
+                    {
+                        "width": "265",
+                        "height": "190",
+                        "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:xxx"
+                    }
+                ],
+                "metatags": [
+                    {
+                        "viewport": "width=device-width, initial-scale=1.0"
+                    }
+                ],
+                "cse_image": [
+                    {
+                        "src": "https://www.test.com/img/screenshot-1.png"
+                    }
+                ]
+            }
+        }
+    ]
+}

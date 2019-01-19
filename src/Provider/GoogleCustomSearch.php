@@ -18,12 +18,31 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
  * @category Phergie
  * @package Chrismou\Phergie\Plugin\Google\Provider
  */
-class GoogleSearch implements GoogleProviderInterface
+class GoogleCustomSearch implements GoogleProviderInterface
 {
     /**
      * @var string
      */
-    protected $apiUrl = 'http://ajax.googleapis.com/ajax/services/search/web';
+    protected $apiUrl = 'https://www.googleapis.com/customsearch/v1';
+
+    /**
+     * @var array
+     */
+    protected $config = [];
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        if (!array_key_exists('google_custom_search_id', $config)) {
+            throw new \Error('Missing Custom search ID');
+        }
+        if (!array_key_exists('google_custom_search_key', $config)) {
+            throw new \Error('Missing Custom search Key');
+        }
+        $this->config = $config;
+    }
 
     /**
      * Validate the provided parameters
@@ -48,13 +67,16 @@ class GoogleSearch implements GoogleProviderInterface
         $query = trim(implode(" ", $params));
 
         $querystringParams = [
-            'v' => '1.0',
-            'q' => $query
+            'v' => isset($this->config['version']) ? $this->config['version'] : '1.0',
+            'q' => $query,
+            'cx' => $this->config['google_custom_search_id'],
+            'key' => $this->config['google_custom_search_key'],
+            'num' => isset($this->config['number_of_results']) ? $this->config['number_of_results'] : 3,
         ];
 
         return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
     }
-
+    
     /**
      * Returns an array of lines to send back to IRC when the http request is successful
      *
@@ -66,20 +88,19 @@ class GoogleSearch implements GoogleProviderInterface
     public function getSuccessLines(Event $event, $apiResponse)
     {
         $json = json_decode($apiResponse);
-        $json = $json->responseData;
+        return (count(isset($json->items) ? $json->items : []) > 0) ? $this->getResultLines($json->items) : $this->getNoResultsLines($event, $apiResponse);
+    }
 
-        if (isset($json->cursor->estimatedResultCount) && $json->cursor->estimatedResultCount > 0) {
-            $messages = [];
+    public function getResultLines($items)
+    {
+        $messages = [];
+        foreach ($items as $item) {
             $messages[] = sprintf(
                 "%s [ %s ]",
-                $json->results[0]->titleNoFormatting,
-                $json->results[0]->url
+                $item->title,
+                $item->link
             );
-            $messages[] = sprintf("More results: %s", $json->cursor->moreResultsUrl);
-        } else {
-            $messages = $this->getNoResultsLines($event, $apiResponse);
         }
-
         return $messages;
     }
 
@@ -106,7 +127,9 @@ class GoogleSearch implements GoogleProviderInterface
      */
     public function getRejectLines(Event $event, $apiError)
     {
-        return ['something went wrong... ಠ_ಠ'];
+        return [
+            'something went wrong... ಠ_ಠ',
+        ];
     }
 
     /**

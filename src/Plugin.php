@@ -32,10 +32,15 @@ class Plugin extends AbstractPlugin
      * @var array
      */
     protected $providers = [
-        "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearch",
-        "googlecount" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleSearchCount"
+        "google" => "Chrismou\\Phergie\\Plugin\\Google\\Provider\\GoogleCustomSearch",
     ];
 
+    /**
+     * Array of configuration options
+     * 
+     * @var array
+     */
+    protected $config = [];
 
     /**
      * Accepts plugin configuration
@@ -50,6 +55,9 @@ class Plugin extends AbstractPlugin
     {
         if (isset($config['providers']) && is_array($config['providers'])) {
             $this->providers = $config['providers'];
+        }
+        if (isset($config['config']) && is_array($config['config'])) {
+            $this->config = $config['config'];
         }
     }
 
@@ -118,7 +126,7 @@ class Plugin extends AbstractPlugin
     public function getProvider($command)
     {
         $providerExists = (isset($this->providers[$command]) && class_exists($this->providers[$command]));
-        return ($providerExists) ? new $this->providers[$command] : false;
+        return ($providerExists) ? new $this->providers[$command]($this->config) : false;
     }
 
 
