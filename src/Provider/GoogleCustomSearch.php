@@ -26,6 +26,25 @@ class GoogleCustomSearch implements GoogleProviderInterface
     protected $apiUrl = 'https://www.googleapis.com/customsearch/v1';
 
     /**
+     * @var array
+     */
+    protected $config = [];
+
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        if (!array_key_exists('google_custom_search_id', $config)) {
+            throw new \Error('Missing Custom search ID');
+        }
+        if (!array_key_exists('google_custom_search_key', $config)) {
+            throw new \Error('Missing Custom search Key');
+        }
+        $this->config = $config;
+    }
+
+    /**
      * Validate the provided parameters
      *
      * @param array $params
@@ -48,16 +67,16 @@ class GoogleCustomSearch implements GoogleProviderInterface
         $query = trim(implode(" ", $params));
 
         $querystringParams = [
-            'v' => '1.0',
+            'v' => isset($this->config['version']) ? $this->config['version'] : '1.0',
             'q' => $query,
-            'cx' => getenv('PHERGIE_GOOGLE_CS_ID'),
-            'key' => getenv('PHERGIE_GOOGLE_CS_KEY'),
-            'num' => 3,
+            'cx' => $this->config['google_custom_search_id'],
+            'key' => $this->config['google_custom_search_id'],
+            'num' => isset($this->config['number_of_results']) ? $this->config['number_of_results'] : 3,
         ];
 
         return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
     }
-
+    
     /**
      * Returns an array of lines to send back to IRC when the http request is successful
      *
@@ -69,20 +88,19 @@ class GoogleCustomSearch implements GoogleProviderInterface
     public function getSuccessLines(Event $event, $apiResponse)
     {
         $json = json_decode($apiResponse);
-        if (isset($json->items) && (count($json->items) > 0)) {
-            $messages = [];
+        return (count($json->items ?? []) > 0) ? $this->getResultLines($json->items) : $this->getNoResultsLines($event, $apiResponse);
+    }
 
-            foreach ($json->items as $item) {
-                $messages[] = sprintf(
-                    "%s [ %s ]",
-                    $item->title,
-                    $item->link
-                );
-            }
-        } else {
-            $messages = $this->getNoResultsLines($event, $apiResponse);
+    public function getResultLines($items)
+    {
+        $messages = [];
+        foreach ($items as $item) {
+            $messages[] = sprintf(
+                "%s [ %s ]",
+                $item->title,
+                $item->link
+            );
         }
-
         return $messages;
     }
 
